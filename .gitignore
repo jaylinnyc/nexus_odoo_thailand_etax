@@ -14,7 +14,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+# lib/  # NOT ignored - contains module code
 lib64/
 parts/
 sdist/

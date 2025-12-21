@@ -1,24 +1,22 @@
-# Thailand e-Tax Export Module
+# Thailand e-Tax Export Module for Odoo 19
 
 ## 🇹🇭 Overview
+
 This Odoo 19 module enables automatic generation of e-Tax XML files compliant with Thailand's Electronic Tax Invoice and Receipt System (ETDA Standard) as required by the Thai Revenue Department.
+
+**Architecture:** This module generates unsigned XML documents and integrates with an external [on-premise signing service](https://github.com/jaylinnyc/thailand-etax-signing-service) that handles PKCS#11 hardware token digital signing.
 
 ## ✨ Features
 
-### Current Implementation (Phase 1 - Foundation)
-- ✅ **Company Configuration:** Complete Thai tax registration and address management
-- ✅ **Certificate Management:** Support for PKCS#11 and PKCS#12 digital certificates
+- ✅ **ETDA XML Generation:** Full compliance with ETDA XML standards
+- ✅ **Company Configuration:** Thai tax registration and address management
 - ✅ **Invoice Export:** Single invoice export with status tracking
 - ✅ **Batch Export:** Export multiple invoices to XML or ZIP archive
-- ✅ **Export Tracking:** Track export status, dates, and errors
-- ✅ **User Interface:** Intuitive configuration and export wizards
-- ✅ **Security:** Role-based access control for users and managers
-
-### Planned Features (Phase 2 & 3)
-- ⏳ **ETDA XML Generation:** Full compliance with ETDA XML standards
-- ⏳ **XAdES-BES Signature:** Digital signature with Thai certificates
-- ⏳ **Schema Validation:** Automatic validation against official ETDA schemas
-- ⏳ **Multiple Document Types:** Tax invoices, receipts, debit/credit notes
+- ✅ **Signing Service Integration:** Connect to on-premise signing service
+- ✅ **Callback Support:** Receive signed documents automatically
+- ✅ **Status Tracking:** Track export, signing, and submission status
+- ✅ **Export Wizard:** User-friendly batch export interface
+- ✅ **Security:** Role-based access control
 
 ## 📋 Requirements
 
@@ -29,37 +27,26 @@ This Odoo 19 module enables automatic generation of e-Tax XML files compliant wi
   - `account`
   - `l10n_th` (Thai localization - optional but recommended)
 
-### Python Libraries (for Phase 2)
-```bash
-pip install lxml>=4.9.0
-pip install xmlsec>=1.3.13
-pip install cryptography>=40.0.0
-pip install pyOpenSSL>=23.0.0
-```
-
-### System Requirements
-- Python 3.8 or later
-- Linux/macOS/Windows with Odoo 19
+### Signing Service
+For digital signatures, you need to deploy the [Thailand e-Tax Signing Service](https://github.com/jaylinnyc/thailand-etax-signing-service) on-premise.
 
 ## 🚀 Installation
 
 ### Step 1: Install Module
-1. Copy the `thailand_etax` folder to your Odoo addons directory:
-   ```bash
-   cp -r jaylinnyc/thailand_etax /path/to/odoo/addons/
-   ```
 
-2. Update Odoo apps list:
-   ```
-   Odoo → Apps → Update Apps List
-   ```
+```bash
+# Copy to Odoo addons directory
+cp -r nexus_odoo_thailand_etax /path/to/odoo/addons/thailand_etax
 
-3. Install the module:
-   ```
-   Search for "Thailand e-Tax Export" → Install
-   ```
+# Update Odoo apps list
+# Odoo → Apps → Update Apps List
+
+# Install the module
+# Search for "Thailand e-Tax Export" → Install
+```
 
 ### Step 2: Configure Company Information
+
 1. Navigate to: **Settings → Companies → [Your Company]**
 2. Go to the **"e-Tax Thailand"** tab
 3. Fill in required information:
@@ -69,177 +56,107 @@ pip install pyOpenSSL>=23.0.0
    - **Contact Info:** Telephone, email, website
 
 ### Step 3: Configure e-Tax Settings
+
 1. Navigate to: **Accounting → Configuration → e-Tax → e-Tax Settings**
-2. Create a new configuration:
-   - **Certificate Type:** Choose PKCS#12 (file) or PKCS#11 (smart card)
-   - **Certificate Path:** Path to your .p12/.pfx file
-   - **Certificate Password:** Password to unlock certificate
-   - **Output Directory:** Where to save XML files
-   - **Auto Sign:** Enable automatic digital signature
-   - **Validate XML:** Enable XML schema validation
+2. Create/edit configuration:
+   - **Signing Service URL:** URL of your on-premise signing service (e.g., `http://localhost:8443`)
+   - **API Key:** Authentication key for signing service
+   - **Auto Sign:** Enable automatic sending to signing service
+   - **Auto Submit to RD:** Automatically submit to Revenue Department after signing
 
 ## 📖 Usage
 
 ### Export Single Invoice
+
 1. Open a **posted** customer invoice
-2. Click the **"Export e-Tax XML"** button in the header
-3. The XML file is generated automatically
-4. Click **"Download XML"** to save the file
-5. Invoice status changes to "Exported"
+2. Click **"Generate e-Tax XML"** button
+3. The unsigned XML file is generated
+4. Click **"Send to Signing Service"** to sign
+5. Signed document will be returned via callback
 
 ### Batch Export
+
 1. Go to: **Accounting → Configuration → e-Tax → Export Wizard**
 2. Choose export type:
    - **Selected Invoices:** Pick specific invoices
    - **Date Range:** Export all invoices in a period
-3. Configure options:
-   - Include digital signature
-   - Export format (individual XML or ZIP)
-4. Click **"Export"**
-5. Download the generated file(s)
+3. Configure options and click **"Export"**
 
-### Check Export Status
-- View invoice list with e-Tax status column
-- Green badge = Successfully exported
-- Red badge = Error during export
-- Gray badge = Not yet exported
+### Status Tracking
 
-### Reset Export
-If you need to re-export:
-1. Open the invoice
-2. Click **"Reset e-Tax"** (requires Manager role)
-3. Confirm the action
-4. Export again
+| Status | Description |
+|--------|-------------|
+| Draft | Not yet exported |
+| Exported | XML generated (unsigned) |
+| Pending Signature | Sent to signing service |
+| Signed | Digital signature applied |
+| Submitted | Sent to Revenue Department |
+| Confirmed | Confirmed by Revenue Department |
+| Error | Error occurred |
 
 ## 📁 Module Structure
 
 ```
-thailand_etax/
+nexus_odoo_thailand_etax/
 ├── __init__.py
 ├── __manifest__.py
-├── README.md                    # This file
-├── RESEARCH_AND_PLAN.md        # Detailed implementation plan
-├── QUICK_START.md              # Developer quick start guide
-├── IMPLEMENTATION_STATUS.md    # Current status and roadmap
+├── README.md
 ├── models/
-│   ├── __init__.py
-│   ├── etax_config.py          # Certificate & export configuration
+│   ├── account_move.py         # Invoice e-Tax functionality
+│   ├── etax_config.py          # Signing service configuration
 │   ├── res_company.py          # Company Thai tax fields
-│   └── account_move.py         # Invoice e-Tax functionality
+│   └── res_partner.py          # Partner tax ID fields
+├── controllers/
+│   └── etax_callback.py        # Callback endpoint for signing service
 ├── wizards/
-│   ├── __init__.py
 │   └── etax_export_wizard.py   # Batch export wizard
 ├── views/
-│   ├── etax_config_views.xml
-│   ├── res_company_views.xml
 │   ├── account_move_views.xml
-│   └── etax_export_wizard_views.xml
+│   ├── etax_config_views.xml
+│   ├── etax_export_wizard_views.xml
+│   ├── res_company_views.xml
+│   └── res_partner_views.xml
+├── lib/
+│   ├── etax_tax_invoice.py     # XML generation for tax invoices
+│   ├── etax_validator.py       # Invoice validation
+│   └── etax_xml_builder.py     # XML builder utilities
 ├── security/
 │   └── ir.model.access.csv
-└── schemas/                     # Reference implementations (git ignored)
-    ├── soda-etax/              # ETDA XML schemas
-    └── etax-xades/             # XAdES signature reference
+└── docs/                       # Additional documentation
 ```
 
-## 🔒 Security & Permissions
+## 🔗 Integration Architecture
+
+```
+┌─────────────────┐        ┌───────────────────────────┐        ┌──────────────┐
+│    Odoo 19      │   →    │  Signing Service (Java)   │   →    │  Thai RD     │
+│  (this module)  │   ←    │  (PKCS#11 USB Token)      │   ←    │  e-Tax API   │
+└─────────────────┘        └───────────────────────────┘        └──────────────┘
+     │                              │
+     │ 1. Generate XML              │ 2. Sign with XAdES-BES
+     │ 3. Send unsigned XML ────────▶
+     │ ◀──────── 4. Callback with signed XML
+     │                              │ 5. Submit to RD (optional)
+     │ ◀──────── 6. Callback with RD confirmation
+```
+
+## 🔒 Security
 
 ### User Roles
-- **Accountant User:** Can export and download XML files
-- **Accountant Manager:** Full access including configuration and reset
+- **Accountant User:** Export and download XML files
+- **Accountant Manager:** Full access including configuration
 
-### Certificate Security
-- Passwords stored encrypted in Odoo database
-- Certificate files not stored in database
-- Supports hardware security modules (PKCS#11)
-
-## ⚙️ Configuration Examples
-
-### PKCS#12 Certificate (File-based)
-```
-Certificate Type: PKCS#12
-Certificate Path: /path/to/certificate.p12
-Certificate Password: ********
-Auto Sign: Yes
-```
-
-### PKCS#11 Smart Card
-```
-Certificate Type: PKCS#11
-PKCS#11 Library: /usr/lib/opensc-pkcs11.so
-Slot ID: 0
-Certificate Password: ********
-Auto Sign: Yes
-```
-
-## 🐛 Troubleshooting
-
-### "Company Tax ID is not configured"
-- Go to Settings → Companies → e-Tax Thailand tab
-- Enter your 13-digit Thai Tax ID
-- Must pass validation (mod 11 checksum)
-
-### "Customer Tax ID is required"
-- Update customer record with Thai Tax ID
-- Go to Contacts → [Customer] → Tax ID field
-
-### "e-Tax configuration not found"
-- Create configuration: Accounting → Configuration → e-Tax Settings
-- Must be marked as Active
-
-### "Invalid Thai Tax ID"
-- Verify the 13-digit number is correct
-- Check digit must match mod 11 algorithm
-- Remove any spaces or special characters
-
-## 📚 Standards Compliance
-
-This module implements:
-- **ETDA Standards:** Electronic Transactions Development Agency XML format
-- **UN/CEFACT:** Cross Industry Invoice standards
-- **XAdES-BES:** XML Advanced Electronic Signatures
-- **TISI1099-2548:** Thai address standards
-
-## 🔗 References
-
-- **Thai Revenue Department:** https://etax.rd.go.th
-- **ETDA Portal:** https://www.etda.or.th
-- **Official Schemas:** https://etax.rd.go.th/etax_staticpage/app/download/XMLSchemaV2.zip
-- **ETDA GitHub:** https://github.com/ETDA
-  - soda-etax: https://github.com/ETDA/soda-etax
-  - etax-xades: https://github.com/ETDA/etax-xades
-
-## 🛠️ Development
-
-### Current Status
-**Phase 1 Complete:** Foundation, UI, and basic export functionality
-**Phase 2 In Progress:** ETDA-compliant XML generation
-
-See `IMPLEMENTATION_STATUS.md` for detailed progress.
-
-### Contributing
-This module is part of the Nexus Panya19 production system.
-For development guidelines, see `RESEARCH_AND_PLAN.md`.
+### API Security
+- Signing service requires API key authentication
+- Callback endpoint validates requests
+- Sensitive data (certificates) stored on signing service only
 
 ## 📄 License
+
 LGPL-3
 
-## 👥 Credits
-- **Author:** Nexus
-- **Based on:** ETDA official standards and reference implementations
-- **Odoo Version:** 19.0
+## 🤝 Support
 
-## 📞 Support
-
-### Technical Issues
-- Check `IMPLEMENTATION_STATUS.md` for known limitations
-- Review `QUICK_START.md` for setup instructions
-
-### ETDA Standards Questions
-- Thai Revenue Department: https://etax.rd.go.th
-- ETDA Support: https://www.etda.or.th/contact
-
----
-
-**Version:** 19.0.1.0.0  
-**Last Updated:** December 21, 2025  
-**Status:** Phase 1 Complete - Foundation Ready for Testing
+For issues or questions:
+- Signing Service: [thailand-etax-signing-service](https://github.com/jaylinnyc/thailand-etax-signing-service)
+- Odoo Module: [nexus_odoo_thailand_etax](https://github.com/jaylinnyc/nexus_odoo_thailand_etax)

@@ -7,8 +7,9 @@
         <field name="arch" type="xml">
             <tree string="e-Tax Configuration">
                 <field name="company_id"/>
-                <field name="certificate_type"/>
+                <field name="signing_service_url"/>
                 <field name="auto_sign"/>
+                <field name="auto_submit_to_rd"/>
                 <field name="active"/>
             </tree>
         </field>
@@ -21,7 +22,8 @@
         <field name="arch" type="xml">
             <form string="e-Tax Configuration">
                 <header>
-                    <button name="action_test_certificate" string="Test Certificate" type="object" class="oe_highlight"/>
+                    <button name="action_test_connection" string="Test Connection" type="object" class="oe_highlight"/>
+                    <button name="action_test_certificate" string="Check Certificate" type="object"/>
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
@@ -35,26 +37,32 @@
                     </group>
                     
                     <notebook>
-                        <page string="Certificate Settings" name="certificate">
+                        <page string="Signing Service" name="signing_service">
                             <group>
-                                <group>
-                                    <field name="certificate_type" widget="radio"/>
+                                <group string="Connection Settings">
+                                    <field name="signing_service_url" placeholder="http://localhost:8443"/>
+                                    <field name="signing_api_key" password="True"/>
+                                    <field name="callback_url" readonly="1"/>
+                                </group>
+                                <group string="Automation">
+                                    <field name="auto_sign"/>
+                                    <field name="auto_submit_to_rd"/>
                                 </group>
                             </group>
-                            
-                            <group string="PKCS#12 Settings" invisible="certificate_type != 'pkcs12'">
-                                <group>
-                                    <field name="certificate_path"/>
-                                    <field name="certificate_password" password="True"/>
-                                </group>
-                            </group>
-                            
-                            <group string="PKCS#11 Settings" invisible="certificate_type != 'pkcs11'">
-                                <group>
-                                    <field name="pkcs11_library_path"/>
-                                    <field name="pkcs11_slot_id"/>
-                                    <field name="certificate_password" password="True"/>
-                                </group>
+                            <group>
+                                <div class="alert alert-info" role="alert">
+                                    <h4 class="alert-heading">About Signing Service</h4>
+                                    <p>
+                                        The signing service is an on-premise application that handles digital signatures 
+                                        using your USB certificate token. It must be running on a server with the USB 
+                                        token physically connected.
+                                    </p>
+                                    <hr/>
+                                    <p class="mb-0">
+                                        <strong>Setup:</strong> Deploy the <code>thailand-etax-signing-service</code> 
+                                        Docker container on your local server with the USB token attached.
+                                    </p>
+                                </div>
                             </group>
                         </page>
                         
@@ -62,17 +70,7 @@
                             <group>
                                 <group>
                                     <field name="output_directory"/>
-                                    <field name="auto_sign"/>
                                     <field name="validate_xml"/>
-                                </group>
-                            </group>
-                        </page>
-                        
-                        <page string="Algorithm Settings" name="algorithms">
-                            <group>
-                                <group>
-                                    <field name="digest_algorithm"/>
-                                    <field name="signature_algorithm"/>
                                 </group>
                             </group>
                         </page>
@@ -92,7 +90,7 @@
                 Configure e-Tax Settings
             </p>
             <p>
-                Set up digital certificate and export settings for Thailand e-Tax system.
+                Set up connection to your on-premise signing service for Thailand e-Tax.
             </p>
         </field>
     </record>

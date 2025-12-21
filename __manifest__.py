@@ -19,9 +19,12 @@
         * Validate XML files against ETDA schema
         * Support for Thai tax requirements and formats
         * Integration with Odoo's accounting module
+        * Integration with on-premise signing service
+        * Callback endpoint for receiving signed documents
+        * Automatic submission to Revenue Department (optional)
     """,
     'author': "Nexus",
-    'website': "https://www.yourcompany.com",
+    'website': "https://nexus.co.th",
     'category': 'Accounting/Localizations',
     'version': '19.0.1.0.0',
     'depends': [
