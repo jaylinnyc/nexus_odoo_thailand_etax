@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inherit Company Form View -->
+    <record id="view_company_form_inherit_etax" model="ir.ui.view">
+        <field name="name">res.company.form.inherit.etax</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='general_settings']" position="after">
+                <page string="e-Tax Thailand" name="etax_thailand">
+                    <group>
+                        <group string="Tax Registration">
+                            <field name="etax_tax_id"/>
+                            <field name="etax_branch_id"/>
+                        </group>
+                        <group string="Contact Information">
+                            <field name="etax_telephone"/>
+                            <field name="etax_email"/>
+                            <field name="etax_website"/>
+                        </group>
+                    </group>
+                    
+                    <group string="Thai Address Details">
+                        <group string="Building Information">
+                            <field name="etax_building_name"/>
+                            <field name="etax_building_number"/>
+                            <field name="etax_floor_number"/>
+                            <field name="etax_room_number"/>
+                        </group>
+                        
+                        <group string="Location">
+                            <field name="etax_house_number"/>
+                            <field name="etax_village_name"/>
+                            <field name="etax_moo"/>
+                            <field name="etax_soi"/>
+                            <field name="etax_street"/>
+                        </group>
+                    </group>
+                    
+                    <group>
+                        <group string="Administrative Division">
+                            <field name="etax_sub_district"/>
+                            <field name="etax_district"/>
+                            <field name="etax_province"/>
+                            <field name="etax_province_code"/>
+                        </group>
+                        
+                        <group string="Postal">
+                            <field name="etax_postal_code"/>
+                            <field name="etax_country_code"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

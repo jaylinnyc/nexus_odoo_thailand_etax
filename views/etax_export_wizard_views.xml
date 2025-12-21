@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- e-Tax Export Wizard Form View -->
+    <record id="view_etax_export_wizard_form" model="ir.ui.view">
+        <field name="name">etax.export.wizard.form</field>
+        <field name="model">etax.export.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Export e-Tax XML">
+                <sheet>
+                    <group invisible="state == 'done'">
+                        <group>
+                            <field name="company_id"/>
+                            <field name="export_type" widget="radio"/>
+                            <field name="export_format" widget="radio"/>
+                            <field name="include_signature"/>
+                        </group>
+                    </group>
+                    
+                    <group invisible="state == 'done'">
+                        <group string="Selected Invoices" invisible="export_type != 'selected'">
+                            <field name="invoice_ids" nolabel="1" colspan="2" widget="many2many_tags"/>
+                        </group>
+                        
+                        <group string="Date Range" invisible="export_type != 'date_range'">
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="partner_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    
+                    <notebook invisible="state != 'done'">
+                        <page string="Export Results" name="results">
+                            <group>
+                                <field name="result_filename" invisible="not result_filename"/>
+                                <field name="result_file" filename="result_filename" invisible="not result_file"/>
+                            </group>
+                            <group>
+                                <field name="export_log" colspan="2" nolabel="1" widget="text"/>
+                            </group>
+                        </page>
+                    </notebook>
+                    
+                    <field name="state" invisible="1"/>
+                </sheet>
+                <footer>
+                    <button string="Export" name="action_export" type="object" class="oe_highlight" invisible="state == 'done'"/>
+                    <button string="Download" name="action_download_result" type="object" class="oe_highlight" invisible="state != 'done' or not result_file"/>
+                    <button string="Close" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- e-Tax Export Wizard Action -->
+    <record id="action_etax_export_wizard" model="ir.actions.act_window">
+        <field name="name">Export e-Tax XML</field>
+        <field name="res_model">etax.export.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem id="menu_etax_export_wizard"
+              name="Export Wizard"
+              parent="thailand_etax.menu_etax_export"
+              action="action_etax_export_wizard"
+              sequence="10"/>
+</odoo>

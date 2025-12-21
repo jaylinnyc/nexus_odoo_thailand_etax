@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- e-Tax Configuration Tree View -->
+    <record id="view_etax_config_tree" model="ir.ui.view">
+        <field name="name">etax.config.tree</field>
+        <field name="model">etax.config</field>
+        <field name="arch" type="xml">
+            <tree string="e-Tax Configuration">
+                <field name="company_id"/>
+                <field name="certificate_type"/>
+                <field name="auto_sign"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- e-Tax Configuration Form View -->
+    <record id="view_etax_config_form" model="ir.ui.view">
+        <field name="name">etax.config.form</field>
+        <field name="model">etax.config</field>
+        <field name="arch" type="xml">
+            <form string="e-Tax Configuration">
+                <header>
+                    <button name="action_test_certificate" string="Test Certificate" type="object" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                    </div>
+                    <group>
+                        <group string="Company">
+                            <field name="company_id"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    
+                    <notebook>
+                        <page string="Certificate Settings" name="certificate">
+                            <group>
+                                <group>
+                                    <field name="certificate_type" widget="radio"/>
+                                </group>
+                            </group>
+                            
+                            <group string="PKCS#12 Settings" invisible="certificate_type != 'pkcs12'">
+                                <group>
+                                    <field name="certificate_path"/>
+                                    <field name="certificate_password" password="True"/>
+                                </group>
+                            </group>
+                            
+                            <group string="PKCS#11 Settings" invisible="certificate_type != 'pkcs11'">
+                                <group>
+                                    <field name="pkcs11_library_path"/>
+                                    <field name="pkcs11_slot_id"/>
+                                    <field name="certificate_password" password="True"/>
+                                </group>
+                            </group>
+                        </page>
+                        
+                        <page string="Output Settings" name="output">
+                            <group>
+                                <group>
+                                    <field name="output_directory"/>
+                                    <field name="auto_sign"/>
+                                    <field name="validate_xml"/>
+                                </group>
+                            </group>
+                        </page>
+                        
+                        <page string="Algorithm Settings" name="algorithms">
+                            <group>
+                                <group>
+                                    <field name="digest_algorithm"/>
+                                    <field name="signature_algorithm"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- e-Tax Configuration Action -->
+    <record id="action_etax_config" model="ir.actions.act_window">
+        <field name="name">e-Tax Configuration</field>
+        <field name="res_model">etax.config</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Configure e-Tax Settings
+            </p>
+            <p>
+                Set up digital certificate and export settings for Thailand e-Tax system.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_etax_root"
+              name="e-Tax"
+              parent="account.menu_finance_configuration"
+              sequence="100"/>
+    
+    <menuitem id="menu_etax_config"
+              name="e-Tax Settings"
+              parent="menu_etax_root"
+              action="action_etax_config"
+              sequence="10"/>
+</odoo>
