@@ -127,3 +127,4 @@ etax_exports/
 *.tmp
 *.bak
 *.backup
+.venv/

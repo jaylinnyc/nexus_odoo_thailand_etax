@@ -1,0 +1,13 @@
+# Thailand e-Tax Export - Phase 2 Dependencies
+# These packages are required for ETDA-compliant XML generation and digital signatures
+
+# XML Processing
+lxml>=4.9.0              # XML generation and parsing with namespace support
+
+# Digital Signature (XAdES-BES)
+xmlsec>=1.3.13           # XML Digital Signature support
+cryptography>=40.0.0     # Cryptographic operations
+pyOpenSSL>=23.0.0        # OpenSSL wrapper for certificate handling
+
+# Optional: PKCS#11 support for smartcards
+# python-pkcs11>=0.7.0   # Uncomment if using smartcard readers

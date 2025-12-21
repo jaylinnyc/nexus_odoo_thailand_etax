@@ -85,10 +85,4 @@
         <field name="binding_model_id" ref="account.model_account_move"/>
         <field name="binding_view_types">list</field>
     </record>
-
-    <!-- Menu Item for e-Tax Export -->
-    <menuitem id="menu_etax_export"
-              name="Export e-Tax"
-              parent="thailand_etax.menu_etax_root"
-              sequence="20"/>
 </odoo>

@@ -33,6 +33,7 @@
         'security/ir.model.access.csv',
         'views/etax_config_views.xml',
         'views/res_company_views.xml',
+        'views/res_partner_views.xml',
         'views/account_move_views.xml',
         'views/etax_export_wizard_views.xml',
     ],
