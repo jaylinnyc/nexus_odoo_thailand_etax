@@ -99,6 +99,10 @@ class AccountMove(models.Model):
     
     def action_unfinalize_etax(self):
         """Unfinalize e-Tax invoices (manager only)"""
+        # Check user has account manager rights
+        if not self.env.user.has_group('account.group_account_manager'):
+            raise UserError(_('Only Account Managers can unfinalize e-Tax invoices.'))
+        
         self.write({
             'etax_finalized': False,
             'etax_finalized_date': False,
