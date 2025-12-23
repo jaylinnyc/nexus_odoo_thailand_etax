@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Main Menu: e-Tax under Accounting > Reporting > Tax Reports -->
+    
+    <!-- e-Tax Invoices Menu Item -->
+    <menuitem id="menu_etax_invoices"
+              name="e-Tax Invoices"
+              parent="account.menu_finance_reports"
+              action="action_etax_invoices"
+              sequence="100"
+              groups="account.group_account_user"/>
+
+</odoo>

@@ -1,27 +1,29 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Nexus Odoo Thailand e-Tax Export",
+    'name': "Thailand e-Tax Invoice Export",
     'summary': """
-        Export invoices and receipts in ETDA XML format for Thailand Revenue Department
+        Export customer invoices and credit notes for Thailand e-Tax processing
     """,
     'description': """
-        Nexus Odoo Thailand e-Tax Export Module
-        ========================================
+        Thailand e-Tax Invoice Export Module
+        =====================================
         
-        This module enables electronic tax invoice and receipt generation compliant with:
-        - Thai Revenue Department requirements
-        - ETDA (Electronic Transactions Development Agency) XML standards
+        This module provides a simple interface to export customer invoices 
+        and credit notes to Excel format for Thailand e-Tax processing.
         
         Features:
         ---------
-        * Export tax invoices in ETDA XML format
-        * Export receipts in ETDA XML format
-        * Validate XML files against ETDA schema
-        * Support for Thai tax requirements and formats
-        * Integration with Odoo's accounting module
-        * Integration with on-premise signing service
-        * Callback endpoint for receiving signed documents
-        * Automatic submission to Revenue Department (optional)
+        * View all customer invoices and credit notes
+        * Filter by date, status, and customer
+        * Export selected invoices to Excel format
+        * Track e-Tax export status
+        
+        The exported Excel file can be loaded into your separate system 
+        to validate, convert to XML, and sign with digital certificates.
+        
+        Menu Location:
+        --------------
+        Accounting > Reports > Tax Reports > e-Tax Invoices
     """,
     'author': "Nexus",
     'website': "https://nexus.co.th",
@@ -30,19 +32,21 @@
     'depends': [
         'base',
         'account',
-        'l10n_th',  # Thai localization
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/etax_config_views.xml',
         'views/res_company_views.xml',
         'views/res_partner_views.xml',
-        'views/account_move_views.xml',
-        'views/etax_export_wizard_views.xml',
+        'views/etax_invoice_report_views.xml',
+        'views/etax_excel_export_wizard_views.xml',
+        'views/menu_views.xml',
     ],
     'demo': [],
     'installable': True,
     'application': False,
     'auto_install': False,
     'license': 'LGPL-3',
+    'external_dependencies': {
+        'python': ['xlsxwriter'],
+    },
 }

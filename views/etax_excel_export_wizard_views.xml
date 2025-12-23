@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Excel Export Wizard Form View -->
+    <record id="view_etax_excel_export_wizard_form" model="ir.ui.view">
+        <field name="name">etax.excel.export.wizard.form</field>
+        <field name="model">etax.excel.export.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Export e-Tax Invoices to Excel">
+                <!-- Draft State: Selection Options -->
+                <group invisible="state != 'draft'">
+                    <group string="Selection">
+                        <field name="company_id" groups="base.group_multi_company"/>
+                        <field name="invoice_ids" widget="many2many_tags" 
+                               options="{'no_create': True}"
+                               domain="[('move_type', 'in', ('out_invoice', 'out_refund')), ('state', '=', 'posted')]"/>
+                    </group>
+                    <group string="Date Range (if no invoices selected)">
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <group string="Options">
+                        <field name="include_exported"/>
+                        <field name="include_finalized"/>
+                        <field name="mark_as_exported"/>
+                    </group>
+                </group>
+                
+                <!-- Done State: Export Result -->
+                <group invisible="state != 'done'">
+                    <group string="Export Result">
+                        <field name="export_count" string="Invoices Exported"/>
+                        <field name="export_batch_id" string="Batch ID"/>
+                        <field name="result_filename" string="Filename"/>
+                    </group>
+                </group>
+                
+                <div class="alert alert-info" role="alert" invisible="state != 'done'">
+                    <strong>Next Steps:</strong>
+                    <ol class="mb-0">
+                        <li>Click "Download Excel File" to download the export</li>
+                        <li>Process the file in your e-Tax signing system</li>
+                        <li>Once successfully submitted to Revenue Department, click "Finalize Invoices" to lock them</li>
+                    </ol>
+                </div>
+                
+                <!-- Finalized State -->
+                <group invisible="state != 'finalized'">
+                    <group string="Finalization Complete">
+                        <field name="export_count" string="Invoices Finalized"/>
+                        <field name="export_batch_id" string="Batch ID"/>
+                    </group>
+                </group>
+                
+                <div class="alert alert-success" role="alert" invisible="state != 'finalized'">
+                    <strong>✓ Invoices Finalized</strong><br/>
+                    The exported invoices have been marked as finalized and can no longer be modified.
+                </div>
+                
+                <!-- Exported Invoices List (shown after export) -->
+                <group string="Exported Invoices" invisible="state == 'draft'">
+                    <field name="exported_invoice_ids" nolabel="1" readonly="1">
+                        <tree string="Exported Invoices" create="0" delete="0">
+                            <field name="name"/>
+                            <field name="partner_id"/>
+                            <field name="invoice_date"/>
+                            <field name="amount_total"/>
+                            <field name="etax_finalized" string="Finalized" widget="boolean"/>
+                        </tree>
+                    </field>
+                </group>
+                
+                <footer>
+                    <!-- Draft state buttons -->
+                    <button string="Export" name="action_export" type="object" 
+                            class="btn-primary" invisible="state != 'draft'"/>
+                    
+                    <!-- Done state buttons -->
+                    <button string="Download Excel File" name="action_download" type="object" 
+                            class="btn-primary" invisible="state != 'done'"/>
+                    <button string="Finalize Invoices" name="action_finalize" type="object" 
+                            class="btn-warning" invisible="state != 'done'"
+                            confirm="Are you sure you want to finalize these invoices? They will no longer be editable."/>
+                    
+                    <!-- Close button (all states) -->
+                    <button string="Close" name="action_close" type="object" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Excel Export Wizard Action -->
+    <record id="action_etax_excel_export_wizard" model="ir.actions.act_window">
+        <field name="name">Export to Excel</field>
+        <field name="res_model">etax.excel.export.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_view_types">list</field>
+    </record>
+
+</odoo>

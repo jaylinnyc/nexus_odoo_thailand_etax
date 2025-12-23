@@ -1,37 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Inherit Partner Form View for e-Tax -->
+    <!-- Inherit Partner Form View - Add e-Tax Thailand Tab -->
     <record id="view_partner_form_inherit_etax" model="ir.ui.view">
         <field name="name">res.partner.form.inherit.etax</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
-            <!-- Add e-Tax tab -->
             <xpath expr="//notebook" position="inside">
-                <page string="Thailand e-Tax" name="etax_info">
+                <page string="e-Tax Thailand" name="etax_thailand">
                     <group>
-                        <group string="Tax Information">
+                        <group string="Tax Registration">
                             <field name="etax_use_vat"/>
-                            <field name="etax_tax_id" invisible="etax_use_vat"/>
+                            <field name="etax_tax_id" 
+                                   placeholder="1234567890123"
+                                   invisible="etax_use_vat"/>
+                            <field name="etax_branch_id" placeholder="00000"/>
                             <field name="etax_effective_tax_id" readonly="1"/>
-                            <field name="etax_branch_id"/>
                         </group>
-                    </group>
-                    <group string="Thai Address (TISI1099-2548)">
-                        <group>
-                            <field name="etax_building_number"/>
+                        <group string="Thai Address Details">
                             <field name="etax_building_name"/>
                             <field name="etax_floor_number"/>
                             <field name="etax_room_number"/>
-                            <field name="etax_village_name"/>
-                        </group>
-                        <group>
                             <field name="etax_moo"/>
                             <field name="etax_soi"/>
                             <field name="etax_sub_district"/>
                             <field name="etax_district"/>
                             <field name="etax_province"/>
-                            <field name="etax_province_code"/>
                         </group>
                     </group>
                 </page>

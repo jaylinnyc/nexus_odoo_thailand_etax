@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-from . import etax_export_wizard
+from . import etax_excel_export_wizard

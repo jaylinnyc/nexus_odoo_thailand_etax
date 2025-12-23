@@ -1,5 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_etax_config_user,etax.config.user,model_etax_config,account.group_account_user,1,0,0,0
-access_etax_config_manager,etax.config.manager,model_etax_config,account.group_account_manager,1,1,1,1
-access_etax_export_wizard_user,etax.export.wizard.user,model_etax_export_wizard,account.group_account_user,1,1,1,1
-access_etax_export_wizard_manager,etax.export.wizard.manager,model_etax_export_wizard,account.group_account_manager,1,1,1,1
+access_etax_excel_export_wizard_user,etax.excel.export.wizard.user,model_etax_excel_export_wizard,account.group_account_user,1,1,1,1
+access_etax_excel_export_wizard_manager,etax.excel.export.wizard.manager,model_etax_excel_export_wizard,account.group_account_manager,1,1,1,1
