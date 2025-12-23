@@ -47,50 +47,39 @@
         </field>
     </record>
 
-    <!-- e-Tax Invoices Search View -->
+    <!-- Extend account.move search view to add e-Tax filters -->
     <record id="view_etax_invoice_search" model="ir.ui.view">
-        <field name="name">account.move.etax.search</field>
+        <field name="name">account.move.etax.search.inherit</field>
         <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter"/>
         <field name="arch" type="xml">
-            <search string="e-Tax Invoices">
-                <field name="name" string="Invoice Number"/>
-                <field name="partner_id" string="Customer"/>
-                <field name="invoice_date"/>
-                <field name="ref" string="Reference"/>
-                <field name="etax_export_batch" string="Export Batch"/>
+            <!-- Add e-Tax fields to search -->
+            <field name="partner_id" position="after">
+                <field name="etax_export_batch" string="e-Tax Batch"/>
+            </field>
+            
+            <!-- Add e-Tax filters -->
+            <filter name="posted" position="after">
                 <separator/>
-                <filter string="Invoices" name="invoices" 
-                        domain="[('move_type', '=', 'out_invoice')]"/>
-                <filter string="Credit Notes" name="credit_notes" 
-                        domain="[('move_type', '=', 'out_refund')]"/>
-                <separator/>
-                <filter string="Not Exported" name="not_exported" 
+                <filter string="e-Tax: Not Exported" name="etax_not_exported" 
                         domain="[('etax_exported', '=', False)]"/>
-                <filter string="Exported" name="exported" 
+                <filter string="e-Tax: Exported" name="etax_exported" 
                         domain="[('etax_exported', '=', True)]"/>
-                <separator/>
-                <filter string="Not Finalized" name="not_finalized" 
+                <filter string="e-Tax: Not Finalized" name="etax_not_finalized" 
                         domain="[('etax_finalized', '=', False)]"/>
-                <filter string="Finalized" name="finalized" 
+                <filter string="e-Tax: Finalized" name="etax_finalized" 
                         domain="[('etax_finalized', '=', True)]"/>
-                <separator/>
-                <filter string="Invoice Date" name="filter_invoice_date" date="invoice_date"/>
-                <separator/>
-                <group expand="0" string="Group By">
-                    <filter string="Customer" name="groupby_customer" 
-                            domain="[]" context="{'group_by': 'partner_id'}"/>
-                    <filter string="Invoice Date" name="groupby_date" 
-                            domain="[]" context="{'group_by': 'invoice_date'}"/>
-                    <filter string="Type" name="groupby_type" 
-                            domain="[]" context="{'group_by': 'move_type'}"/>
-                    <filter string="Export Status" name="groupby_exported" 
-                            domain="[]" context="{'group_by': 'etax_exported'}"/>
-                    <filter string="Finalized Status" name="groupby_finalized" 
-                            domain="[]" context="{'group_by': 'etax_finalized'}"/>
-                    <filter string="Export Batch" name="groupby_batch" 
-                            domain="[]" context="{'group_by': 'etax_export_batch'}"/>
-                </group>
-            </search>
+            </filter>
+            
+            <!-- Add e-Tax group by options -->
+            <filter name="status" position="after">
+                <filter string="e-Tax Export Status" name="groupby_etax_exported" 
+                        domain="[]" context="{'group_by': 'etax_exported'}"/>
+                <filter string="e-Tax Finalized Status" name="groupby_etax_finalized" 
+                        domain="[]" context="{'group_by': 'etax_finalized'}"/>
+                <filter string="e-Tax Export Batch" name="groupby_etax_batch" 
+                        domain="[]" context="{'group_by': 'etax_export_batch'}"/>
+            </filter>
         </field>
     </record>
 
@@ -106,17 +95,16 @@
             'default_move_type': 'out_invoice',
             'search_default_not_finalized': 1,
         }</field>
-        <field name="help" type="html">
-            <p class="o_view_nocontent_smiling_face">
-                No invoices to export for e-Tax
-            </p>
-            <p>
-                This view shows all posted customer invoices and credit notes 
-                that can be exported for Thailand e-Tax processing.
-            </p>
-            <p>
-                <strong>Workflow:</strong>
-                <ol>
+    <record id="action_etax_invoices" model="ir.actions.act_window">
+        <field name="name">e-Tax Invoices</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="view_etax_invoice_tree"/>
+        <field name="domain">[('move_type', 'in', ('out_invoice', 'out_refund')), ('state', '=', 'posted')]</field>
+        <field name="context">{
+            'default_move_type': 'out_invoice',
+            'search_default_etax_not_finalized': 1,
+        }</field>ol>
                     <li>Select invoices and click "Export to Excel"</li>
                     <li>Download the Excel file and process in your e-Tax system</li>
                     <li>Once submitted to Revenue Department, finalize the invoices</li>
