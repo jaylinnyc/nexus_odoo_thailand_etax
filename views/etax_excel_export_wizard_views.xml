@@ -56,19 +56,6 @@
                     The exported invoices have been marked as finalized and can no longer be modified.
                 </div>
                 
-                <!-- Exported Invoices List (shown after export) -->
-                <group string="Exported Invoices" invisible="state == 'draft'">
-                    <field name="exported_invoice_ids" nolabel="1" readonly="1">
-                        <tree string="Exported Invoices" create="0" delete="0">
-                            <field name="name"/>
-                            <field name="partner_id"/>
-                            <field name="invoice_date"/>
-                            <field name="amount_total"/>
-                            <field name="etax_finalized" string="Finalized" widget="boolean"/>
-                        </tree>
-                    </field>
-                </group>
-                
                 <footer>
                     <!-- Draft state buttons -->
                     <button string="Export" name="action_export" type="object" 

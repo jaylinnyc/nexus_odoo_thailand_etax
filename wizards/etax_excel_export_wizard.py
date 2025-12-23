@@ -239,7 +239,7 @@ class EtaxExcelExportWizard(models.TransientModel):
         return {'type': 'ir.actions.act_window_close'}
     
     def _generate_excel(self, invoices):
-        """Generate Excel file from invoices"""
+        """Generate Excel file from invoices in e-Tax format (one row per line item)"""
         output = BytesIO()
         workbook = xlsxwriter.Workbook(output, {'in_memory': True})
         
@@ -268,83 +268,196 @@ class EtaxExcelExportWizard(models.TransientModel):
             'border': 1,
         })
         
+        int_format = workbook.add_format({
+            'num_format': '0',
+            'border': 1,
+        })
+        
         # Create worksheet
         worksheet = workbook.add_worksheet('e-Tax Invoices')
         
-        # Define columns
+        # Define columns matching the e-Tax template exactly
         columns = [
-            ('A', 'Document Type', 15),
-            ('B', 'Invoice Number', 20),
-            ('C', 'Invoice Date', 15),
-            ('D', 'Due Date', 15),
-            ('E', 'Customer Name', 35),
-            ('F', 'Customer Tax ID', 18),
-            ('G', 'Customer Branch', 15),
-            ('H', 'Customer Address', 50),
-            ('I', 'Seller Name', 35),
-            ('J', 'Seller Tax ID', 18),
-            ('K', 'Seller Branch', 15),
-            ('L', 'Subtotal (Untaxed)', 18),
-            ('M', 'Tax Amount', 15),
-            ('N', 'Total Amount', 18),
-            ('O', 'Currency', 10),
-            ('P', 'Reference', 25),
-            ('Q', 'Payment Terms', 25),
-            ('R', 'Salesperson', 20),
+            ('document_type', 15),
+            ('document_number', 20),
+            ('issue_date', 12),
+            ('purpose', 10),
+            ('seller_name', 30),
+            ('seller_tax_id', 15),
+            ('seller_branch', 12),
+            ('seller_address', 30),
+            ('seller_address2', 25),
+            ('seller_subdistrict', 18),
+            ('seller_district', 18),
+            ('seller_province', 15),
+            ('seller_postcode', 12),
+            ('seller_phone', 15),
+            ('seller_email', 25),
+            ('buyer_name', 30),
+            ('buyer_tax_id', 15),
+            ('buyer_branch', 12),
+            ('buyer_address', 30),
+            ('buyer_address2', 25),
+            ('buyer_subdistrict', 18),
+            ('buyer_district', 18),
+            ('buyer_province', 15),
+            ('buyer_postcode', 12),
+            ('buyer_phone', 15),
+            ('buyer_email', 25),
+            ('line_id', 8),
+            ('item_name', 30),
+            ('description', 40),
+            ('quantity', 10),
+            ('unit', 8),
+            ('unit_name', 12),
+            ('unit_price', 12),
+            ('discount', 10),
+            ('amount', 12),
+            ('subtotal', 12),
+            ('total_discount', 12),
+            ('vat_rate', 10),
+            ('vat_amount', 12),
+            ('grand_total', 12),
         ]
         
         # Write header row
-        for col_idx, (col_letter, col_name, col_width) in enumerate(columns):
+        for col_idx, (col_name, col_width) in enumerate(columns):
             worksheet.write(0, col_idx, col_name, header_format)
             worksheet.set_column(col_idx, col_idx, col_width)
         
         # Freeze header row
         worksheet.freeze_panes(1, 0)
         
-        # Write data rows
+        # Write data rows - one row per line item
         row = 1
         for invoice in invoices:
             # Determine document type
             if invoice.move_type == 'out_invoice':
-                doc_type = 'Tax Invoice'
+                doc_type = 'TaxInvoice'
             else:
-                doc_type = 'Credit Note'
+                doc_type = 'CreditNote'
             
-            # Get customer info - prefer etax fields, fallback to standard VAT
-            partner = invoice.partner_id
-            customer_tax_id = partner.etax_effective_tax_id or partner.vat or ''
-            customer_branch = partner.etax_branch_id or '00000'
-            customer_address = self._format_address(partner)
-            
-            # Get seller info - prefer etax fields, fallback to standard VAT
+            # Get seller (company) info
             company = invoice.company_id
             seller_tax_id = company.etax_tax_id or company.vat or ''
             seller_branch = company.etax_branch_id or '00000'
             
-            # Write row data
-            worksheet.write(row, 0, doc_type, text_format)
-            worksheet.write(row, 1, invoice.name or '', text_format)
-            worksheet.write(row, 2, invoice.invoice_date, date_format)
-            worksheet.write(row, 3, invoice.invoice_date_due, date_format)
-            worksheet.write(row, 4, partner.name or '', text_format)
-            worksheet.write(row, 5, customer_tax_id, text_format)
-            worksheet.write(row, 6, customer_branch, text_format)
-            worksheet.write(row, 7, customer_address, text_format)
-            worksheet.write(row, 8, company.name or '', text_format)
-            worksheet.write(row, 9, seller_tax_id, text_format)
-            worksheet.write(row, 10, seller_branch, text_format)
-            worksheet.write(row, 11, invoice.amount_untaxed, money_format)
-            worksheet.write(row, 12, invoice.amount_tax, money_format)
-            worksheet.write(row, 13, invoice.amount_total, money_format)
-            worksheet.write(row, 14, invoice.currency_id.name or 'THB', text_format)
-            worksheet.write(row, 15, invoice.ref or '', text_format)
-            worksheet.write(row, 16, invoice.invoice_payment_term_id.name if invoice.invoice_payment_term_id else '', text_format)
-            worksheet.write(row, 17, invoice.invoice_user_id.name if invoice.invoice_user_id else '', text_format)
+            # Build seller address parts
+            seller_address = company.street or ''
+            seller_address2 = ''
+            if company.etax_building_name:
+                seller_address2 = company.etax_building_name
+                if company.etax_floor_number:
+                    seller_address2 += f", Floor {company.etax_floor_number}"
+            if company.street2 and not seller_address2:
+                seller_address2 = company.street2
             
-            row += 1
-        
-        # Add line items sheet
-        self._add_line_items_sheet(workbook, invoices)
+            seller_subdistrict = company.etax_sub_district or ''
+            seller_district = company.etax_district or company.city or ''
+            seller_province = company.etax_province or (company.state_id.name if company.state_id else '')
+            seller_postcode = company.zip or ''
+            seller_phone = company.phone or ''
+            seller_email = company.email or ''
+            
+            # Get buyer (partner) info
+            partner = invoice.partner_id
+            buyer_tax_id = partner.etax_effective_tax_id or partner.vat or ''
+            buyer_branch = partner.etax_branch_id or '00000'
+            
+            # Build buyer address parts
+            buyer_address = partner.street or ''
+            buyer_address2 = ''
+            if partner.etax_building_name:
+                buyer_address2 = partner.etax_building_name
+                if partner.etax_floor_number:
+                    buyer_address2 += f", Floor {partner.etax_floor_number}"
+            if partner.street2 and not buyer_address2:
+                buyer_address2 = partner.street2
+            
+            buyer_subdistrict = partner.etax_sub_district or ''
+            buyer_district = partner.etax_district or partner.city or ''
+            buyer_province = partner.etax_province or (partner.state_id.name if partner.state_id else '')
+            buyer_postcode = partner.zip or ''
+            buyer_phone = partner.phone or partner.mobile or ''
+            buyer_email = partner.email or ''
+            
+            # Get invoice totals
+            subtotal = invoice.amount_untaxed
+            total_discount = sum(line.discount * line.quantity * line.price_unit / 100 
+                                 for line in invoice.invoice_line_ids.filtered(lambda l: l.display_type == 'product'))
+            vat_amount = invoice.amount_tax
+            grand_total = invoice.amount_total
+            
+            # Determine VAT rate (assume first tax line, typically 7% in Thailand)
+            vat_rate = 7  # Default Thai VAT
+            for line in invoice.invoice_line_ids.filtered(lambda l: l.display_type == 'product'):
+                if line.tax_ids:
+                    for tax in line.tax_ids:
+                        if tax.amount > 0:
+                            vat_rate = tax.amount
+                            break
+                    break
+            
+            # Write one row per line item
+            line_num = 1
+            product_lines = invoice.invoice_line_ids.filtered(lambda l: l.display_type == 'product')
+            
+            for line in product_lines:
+                # Line-specific values
+                item_name = line.product_id.name or line.name or ''
+                description = line.name or ''
+                quantity = line.quantity
+                unit = line.product_uom_id.name[:2].upper() if line.product_uom_id else 'EA'
+                unit_name = line.product_uom_id.name if line.product_uom_id else 'Each'
+                unit_price = line.price_unit
+                line_discount = line.discount * line.quantity * line.price_unit / 100 if line.discount else 0
+                line_amount = line.price_subtotal
+                
+                # Write all columns
+                col = 0
+                worksheet.write(row, col, doc_type, text_format); col += 1
+                worksheet.write(row, col, invoice.name or '', text_format); col += 1
+                worksheet.write(row, col, invoice.invoice_date, date_format); col += 1
+                worksheet.write(row, col, 'Sale', text_format); col += 1
+                worksheet.write(row, col, company.name or '', text_format); col += 1
+                worksheet.write(row, col, seller_tax_id, text_format); col += 1
+                worksheet.write(row, col, seller_branch, text_format); col += 1
+                worksheet.write(row, col, seller_address, text_format); col += 1
+                worksheet.write(row, col, seller_address2, text_format); col += 1
+                worksheet.write(row, col, seller_subdistrict, text_format); col += 1
+                worksheet.write(row, col, seller_district, text_format); col += 1
+                worksheet.write(row, col, seller_province, text_format); col += 1
+                worksheet.write(row, col, seller_postcode, text_format); col += 1
+                worksheet.write(row, col, seller_phone, text_format); col += 1
+                worksheet.write(row, col, seller_email, text_format); col += 1
+                worksheet.write(row, col, partner.name or '', text_format); col += 1
+                worksheet.write(row, col, buyer_tax_id, text_format); col += 1
+                worksheet.write(row, col, buyer_branch, text_format); col += 1
+                worksheet.write(row, col, buyer_address, text_format); col += 1
+                worksheet.write(row, col, buyer_address2, text_format); col += 1
+                worksheet.write(row, col, buyer_subdistrict, text_format); col += 1
+                worksheet.write(row, col, buyer_district, text_format); col += 1
+                worksheet.write(row, col, buyer_province, text_format); col += 1
+                worksheet.write(row, col, buyer_postcode, text_format); col += 1
+                worksheet.write(row, col, buyer_phone, text_format); col += 1
+                worksheet.write(row, col, buyer_email, text_format); col += 1
+                worksheet.write(row, col, line_num, int_format); col += 1
+                worksheet.write(row, col, item_name, text_format); col += 1
+                worksheet.write(row, col, description, text_format); col += 1
+                worksheet.write(row, col, quantity, money_format); col += 1
+                worksheet.write(row, col, unit, text_format); col += 1
+                worksheet.write(row, col, unit_name, text_format); col += 1
+                worksheet.write(row, col, unit_price, money_format); col += 1
+                worksheet.write(row, col, line_discount, money_format); col += 1
+                worksheet.write(row, col, line_amount, money_format); col += 1
+                worksheet.write(row, col, subtotal, money_format); col += 1
+                worksheet.write(row, col, total_discount, money_format); col += 1
+                worksheet.write(row, col, vat_rate, int_format); col += 1
+                worksheet.write(row, col, vat_amount, money_format); col += 1
+                worksheet.write(row, col, grand_total, money_format)
+                
+                row += 1
+                line_num += 1
         
         workbook.close()
         
@@ -353,79 +466,6 @@ class EtaxExcelExportWizard(models.TransientModel):
         filename = f'etax_invoices_{timestamp}.xlsx'
         
         return output.getvalue(), filename
-    
-    def _add_line_items_sheet(self, workbook, invoices):
-        """Add a sheet with invoice line items"""
-        worksheet = workbook.add_worksheet('Line Items')
-        
-        # Add formats
-        header_format = workbook.add_format({
-            'bold': True,
-            'bg_color': '#4472C4',
-            'font_color': 'white',
-            'border': 1,
-            'align': 'center',
-            'valign': 'vcenter',
-            'text_wrap': True,
-        })
-        
-        money_format = workbook.add_format({
-            'num_format': '#,##0.00',
-            'border': 1,
-        })
-        
-        text_format = workbook.add_format({
-            'border': 1,
-        })
-        
-        qty_format = workbook.add_format({
-            'num_format': '#,##0.00',
-            'border': 1,
-        })
-        
-        # Define columns
-        columns = [
-            ('Invoice Number', 20),
-            ('Line #', 8),
-            ('Product Code', 20),
-            ('Product Name', 40),
-            ('Description', 50),
-            ('Quantity', 12),
-            ('UoM', 10),
-            ('Unit Price', 15),
-            ('Discount %', 12),
-            ('Subtotal', 15),
-            ('Tax', 20),
-            ('Tax Amount', 12),
-        ]
-        
-        # Write header
-        for col_idx, (col_name, col_width) in enumerate(columns):
-            worksheet.write(0, col_idx, col_name, header_format)
-            worksheet.set_column(col_idx, col_idx, col_width)
-        
-        worksheet.freeze_panes(1, 0)
-        
-        # Write line items
-        row = 1
-        for invoice in invoices:
-            line_num = 1
-            for line in invoice.invoice_line_ids.filtered(lambda l: l.display_type == 'product'):
-                worksheet.write(row, 0, invoice.name or '', text_format)
-                worksheet.write(row, 1, line_num, text_format)
-                worksheet.write(row, 2, line.product_id.default_code or '', text_format)
-                worksheet.write(row, 3, line.product_id.name or '', text_format)
-                worksheet.write(row, 4, line.name or '', text_format)
-                worksheet.write(row, 5, line.quantity, qty_format)
-                worksheet.write(row, 6, line.product_uom_id.name if line.product_uom_id else '', text_format)
-                worksheet.write(row, 7, line.price_unit, money_format)
-                worksheet.write(row, 8, line.discount, qty_format)
-                worksheet.write(row, 9, line.price_subtotal, money_format)
-                worksheet.write(row, 10, ', '.join(line.tax_ids.mapped('name')), text_format)
-                worksheet.write(row, 11, line.price_total - line.price_subtotal, money_format)
-                
-                row += 1
-                line_num += 1
     
     def _format_address(self, partner):
         """Format partner address as a single string, including Thai address fields"""

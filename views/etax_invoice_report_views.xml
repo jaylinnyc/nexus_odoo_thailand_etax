@@ -74,32 +74,21 @@
                 <filter string="Finalized" name="finalized" 
                         domain="[('etax_finalized', '=', True)]"/>
                 <separator/>
-                <filter string="This Month" name="this_month"
-                        domain="[('invoice_date', '>=', (context_today() + relativedelta(day=1)).strftime('%Y-%m-%d')),
-                                 ('invoice_date', '&lt;', (context_today() + relativedelta(months=1, day=1)).strftime('%Y-%m-%d'))]"/>
-                <filter string="Last Month" name="last_month"
-                        domain="[('invoice_date', '>=', (context_today() + relativedelta(months=-1, day=1)).strftime('%Y-%m-%d')),
-                                 ('invoice_date', '&lt;', (context_today() + relativedelta(day=1)).strftime('%Y-%m-%d'))]"/>
-                <filter string="This Quarter" name="this_quarter"
-                        domain="[('invoice_date', '>=', (context_today() + relativedelta(month=(((context_today().month - 1) // 3) * 3 + 1), day=1)).strftime('%Y-%m-%d')),
-                                 ('invoice_date', '&lt;', (context_today() + relativedelta(month=(((context_today().month - 1) // 3) * 3 + 4), day=1)).strftime('%Y-%m-%d'))]"/>
-                <filter string="This Year" name="this_year"
-                        domain="[('invoice_date', '>=', (context_today() + relativedelta(month=1, day=1)).strftime('%Y-%m-%d')),
-                                 ('invoice_date', '&lt;', (context_today() + relativedelta(month=1, day=1, years=1)).strftime('%Y-%m-%d'))]"/>
+                <filter string="Invoice Date" name="filter_invoice_date" date="invoice_date"/>
                 <separator/>
                 <group expand="0" string="Group By">
                     <filter string="Customer" name="groupby_customer" 
-                            context="{'group_by': 'partner_id'}"/>
+                            domain="[]" context="{'group_by': 'partner_id'}"/>
                     <filter string="Invoice Date" name="groupby_date" 
-                            context="{'group_by': 'invoice_date:month'}"/>
+                            domain="[]" context="{'group_by': 'invoice_date'}"/>
                     <filter string="Type" name="groupby_type" 
-                            context="{'group_by': 'move_type'}"/>
+                            domain="[]" context="{'group_by': 'move_type'}"/>
                     <filter string="Export Status" name="groupby_exported" 
-                            context="{'group_by': 'etax_exported'}"/>
+                            domain="[]" context="{'group_by': 'etax_exported'}"/>
                     <filter string="Finalized Status" name="groupby_finalized" 
-                            context="{'group_by': 'etax_finalized'}"/>
+                            domain="[]" context="{'group_by': 'etax_finalized'}"/>
                     <filter string="Export Batch" name="groupby_batch" 
-                            context="{'group_by': 'etax_export_batch'}"/>
+                            domain="[]" context="{'group_by': 'etax_export_batch'}"/>
                 </group>
             </search>
         </field>
@@ -133,20 +122,6 @@
                     <li>Once submitted to Revenue Department, finalize the invoices</li>
                 </ol>
             </p>
-        </field>
-    </record>
-
-    <!-- Server Action: Unfinalize e-Tax (Manager Only) -->
-    <record id="action_unfinalize_etax" model="ir.actions.server">
-        <field name="name">Unfinalize e-Tax</field>
-        <field name="model_id" ref="account.model_account_move"/>
-        <field name="binding_model_id" ref="account.model_account_move"/>
-        <field name="binding_view_types">list,form</field>
-        <field name="groups_id" eval="[(4, ref('account.group_account_manager'))]"/>
-        <field name="state">code</field>
-        <field name="code">
-if records:
-    records.action_unfinalize_etax()
         </field>
     </record>
 
