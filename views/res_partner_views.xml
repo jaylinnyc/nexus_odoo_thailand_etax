@@ -10,10 +10,6 @@
                 <page string="e-Tax Thailand" name="etax_thailand">
                     <group>
                         <group string="Tax Registration">
-                            <field name="etax_use_vat"/>
-                            <field name="etax_tax_id" 
-                                   placeholder="1234567890123"
-                                   invisible="etax_use_vat == True"/>
                             <field name="etax_branch_id" placeholder="00000"/>
                             <field name="etax_effective_tax_id" readonly="1"/>
                         </group>

@@ -43,16 +43,6 @@ class EtaxExcelExportWizard(models.TransientModel):
         readonly=True,
     )
     
-    date_from = fields.Date(
-        string='From Date',
-        help='Export invoices from this date',
-    )
-    
-    date_to = fields.Date(
-        string='To Date',
-        help='Export invoices up to this date',
-    )
-    
     include_exported = fields.Boolean(
         string='Include Previously Exported',
         default=False,
@@ -126,34 +116,16 @@ class EtaxExcelExportWizard(models.TransientModel):
     
     def _get_invoices_to_export(self):
         """Get invoices based on wizard selection"""
-        domain = [
-            ('move_type', 'in', ('out_invoice', 'out_refund')),
-            ('state', '=', 'posted'),
-            ('company_id', '=', self.company_id.id),
-        ]
+        if not self.invoice_ids:
+            raise UserError(_('Please select invoices to export.'))
         
-        if self.invoice_ids:
-            # Export selected invoices
-            invoices = self.invoice_ids
-            if not self.include_exported:
-                invoices = invoices.filtered(lambda m: not m.etax_exported)
-            if not self.include_finalized:
-                invoices = invoices.filtered(lambda m: not m.etax_finalized)
-            return invoices
-        
-        # Export by date range
-        if self.date_from:
-            domain.append(('invoice_date', '>=', self.date_from))
-        if self.date_to:
-            domain.append(('invoice_date', '<=', self.date_to))
-        
+        # Export selected invoices
+        invoices = self.invoice_ids
         if not self.include_exported:
-            domain.append(('etax_exported', '=', False))
-        
+            invoices = invoices.filtered(lambda m: not m.etax_exported)
         if not self.include_finalized:
-            domain.append(('etax_finalized', '=', False))
-        
-        return self.env['account.move'].search(domain, order='invoice_date, name')
+            invoices = invoices.filtered(lambda m: not m.etax_finalized)
+        return invoices
     
     def action_export(self):
         """Export invoices to Excel"""
@@ -378,7 +350,7 @@ class EtaxExcelExportWizard(models.TransientModel):
             buyer_district = partner.etax_district or partner.city or ''
             buyer_province = partner.etax_province or (partner.state_id.name if partner.state_id else '')
             buyer_postcode = partner.zip or ''
-            buyer_phone = partner.phone or partner.mobile or ''
+            buyer_phone = partner.phone or ''
             buyer_email = partner.email or ''
             
             # Get invoice totals

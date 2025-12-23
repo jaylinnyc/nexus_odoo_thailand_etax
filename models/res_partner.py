@@ -9,23 +9,11 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
     
     # Thai Tax Registration for e-Tax
-    etax_tax_id = fields.Char(
-        string='Thai Tax ID',
-        size=13,
-        help='Thai Tax Identification Number (13 digits)',
-    )
-    
     etax_branch_id = fields.Char(
         string='Branch ID',
         size=5,
         default='00000',
         help='Branch identification code (5 digits, 00000 for head office)',
-    )
-    
-    etax_use_vat = fields.Boolean(
-        string='Use VAT field for e-Tax',
-        default=True,
-        help='If checked, use the standard VAT field for e-Tax. Otherwise use Thai Tax ID field.',
     )
     
     # Thai Address Details
@@ -70,29 +58,18 @@ class ResPartner(models.Model):
     etax_effective_tax_id = fields.Char(
         string='Effective Tax ID',
         compute='_compute_etax_effective_tax_id',
-        help='Tax ID used for e-Tax (either VAT or Thai Tax ID field)',
+        help='Tax ID used for e-Tax (extracted from VAT field)',
     )
     
-    @api.depends('vat', 'etax_tax_id', 'etax_use_vat')
+    @api.depends('vat')
     def _compute_etax_effective_tax_id(self):
         for partner in self:
-            if partner.etax_use_vat:
-                # Extract numeric part from VAT (remove country prefix if present)
-                vat = partner.vat or ''
-                # Remove TH prefix if present
-                if vat.upper().startswith('TH'):
-                    vat = vat[2:]
-                partner.etax_effective_tax_id = re.sub(r'[^0-9]', '', vat)
-            else:
-                partner.etax_effective_tax_id = partner.etax_tax_id or ''
-    
-    @api.constrains('etax_tax_id')
-    def _check_etax_tax_id(self):
-        for partner in self:
-            if partner.etax_tax_id:
-                tax_id_digits = re.sub(r'[^0-9]', '', partner.etax_tax_id)
-                if len(tax_id_digits) != 13:
-                    raise ValidationError(_('Tax ID must be exactly 13 digits.'))
+            # Extract numeric part from VAT (remove country prefix if present)
+            vat = partner.vat or ''
+            # Remove TH prefix if present
+            if vat.upper().startswith('TH'):
+                vat = vat[2:]
+            partner.etax_effective_tax_id = re.sub(r'[^0-9]', '', vat)
     
     @api.constrains('etax_branch_id')
     def _check_etax_branch_id(self):

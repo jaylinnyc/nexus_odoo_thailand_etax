@@ -14,10 +14,6 @@
                                options="{'no_create': True}"
                                domain="[('move_type', 'in', ('out_invoice', 'out_refund')), ('state', '=', 'posted')]"/>
                     </group>
-                    <group string="Date Range (if no invoices selected)">
-                        <field name="date_from"/>
-                        <field name="date_to"/>
-                    </group>
                     <group string="Options">
                         <field name="include_exported"/>
                         <field name="include_finalized"/>
