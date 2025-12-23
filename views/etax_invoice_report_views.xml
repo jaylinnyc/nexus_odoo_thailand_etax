@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- e-Tax Invoices Tree View -->
+    <!-- e-Tax Invoices List View -->
     <record id="view_etax_invoice_tree" model="ir.ui.view">
-        <field name="name">account.move.etax.tree</field>
+        <field name="name">account.move.etax.list</field>
         <field name="model">account.move</field>
         <field name="arch" type="xml">
-            <tree string="e-Tax Invoices" 
+            <list string="e-Tax Invoices" 
                   decoration-info="move_type == 'out_invoice' and not etax_finalized"
                   decoration-warning="move_type == 'out_refund' and not etax_finalized"
                   decoration-success="etax_finalized == True"
@@ -43,7 +43,7 @@
                 <field name="etax_export_date" string="Export Date" optional="show"/>
                 <field name="etax_finalized_date" string="Finalized Date" optional="hide"/>
                 <field name="etax_export_batch" string="Batch" optional="hide"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -98,7 +98,7 @@
     <record id="action_etax_invoices" model="ir.actions.act_window">
         <field name="name">e-Tax Invoices</field>
         <field name="res_model">account.move</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="view_id" ref="view_etax_invoice_tree"/>
         <field name="search_view_id" ref="view_etax_invoice_search"/>
         <field name="domain">[('move_type', 'in', ('out_invoice', 'out_refund')), ('state', '=', 'posted')]</field>
