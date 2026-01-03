@@ -15,14 +15,14 @@
                     <group>
                         <group string="Export Status">
                             <field name="etax_exported" readonly="1"/>
-                            <field name="etax_export_date" readonly="1" attrs="{'invisible': [('etax_exported', '=', False)]}"/>
-                            <field name="etax_export_batch" readonly="1" attrs="{'invisible': [('etax_exported', '=', False)]}"/>
+                            <field name="etax_export_date" readonly="1" invisible="not etax_exported"/>
+                            <field name="etax_export_batch" readonly="1" invisible="not etax_exported"/>
                         </group>
                         
                         <group string="Finalization Status">
                             <field name="etax_finalized" readonly="1"/>
-                            <field name="etax_finalized_date" readonly="1" attrs="{'invisible': [('etax_finalized', '=', False)]}"/>
-                            <field name="etax_finalized_by" readonly="1" attrs="{'invisible': [('etax_finalized', '=', False)]}"/>
+                            <field name="etax_finalized_date" readonly="1" invisible="not etax_finalized"/>
+                            <field name="etax_finalized_by" readonly="1" invisible="not etax_finalized"/>
                         </group>
                     </group>
                     
