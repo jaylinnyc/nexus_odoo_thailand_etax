@@ -75,10 +75,6 @@
         <!-- Piece (ชิ้น) -->
         <record id="uom_piece" model="uom.uom">
             <field name="name">Piece</field>
-            <field name="category_id" ref="uom.product_uom_categ_unit"/>
-            <field name="factor">1.0</field>
-            <field name="uom_type">reference</field>
-            <field name="rounding">0.01</field>
             <field name="etax_code">EA</field>
             <field name="etax_name_th">ชิ้น</field>
         </record>
@@ -86,10 +82,6 @@
         <!-- Box (กล่อง) -->
         <record id="uom_box" model="uom.uom">
             <field name="name">Box</field>
-            <field name="category_id" ref="uom.product_uom_categ_unit"/>
-            <field name="factor">1.0</field>
-            <field name="uom_type">bigger</field>
-            <field name="rounding">0.01</field>
             <field name="etax_code">BX</field>
             <field name="etax_name_th">กล่อง</field>
         </record>
@@ -97,7 +89,6 @@
         <!-- Set (ชุด) -->
         <record id="uom_set" model="uom.uom">
             <field name="name">Set</field>
-            <field name="category_id" ref="uom.product_uom_categ_unit"/>
             <field name="factor">1.0</field>
             <field name="uom_type">bigger</field>
             <field name="rounding">0.01</field>
@@ -108,10 +99,6 @@
         <!-- Pack (แพ็ค) -->
         <record id="uom_pack" model="uom.uom">
             <field name="name">Pack</field>
-            <field name="category_id" ref="uom.product_uom_categ_unit"/>
-            <field name="factor">1.0</field>
-            <field name="uom_type">bigger</field>
-            <field name="rounding">0.01</field>
             <field name="etax_code">PK</field>
             <field name="etax_name_th">แพ็ค</field>
         </record>
@@ -119,10 +106,6 @@
         <!-- Pair (คู่) -->
         <record id="uom_pair" model="uom.uom">
             <field name="name">Pair</field>
-            <field name="category_id" ref="uom.product_uom_categ_unit"/>
-            <field name="factor">2.0</field>
-            <field name="uom_type">bigger</field>
-            <field name="rounding">1.0</field>
             <field name="etax_code">PR</field>
             <field name="etax_name_th">คู่</field>
         </record>
@@ -130,21 +113,9 @@
         <!-- Bottle (ขวด) -->
         <record id="uom_bottle" model="uom.uom">
             <field name="name">Bottle</field>
-            <field name="category_id" ref="uom.product_uom_categ_unit"/>
-            <field name="factor">1.0</field>
-            <field name="uom_type">bigger</field>
-            <field name="rounding">0.01</field>
-            <field name="etax_code">BT</field>
-            <field name="etax_name_th">ขวด</field>
-        </record>
-        
         <!-- Can (กระป๋อง) -->
         <record id="uom_can" model="uom.uom">
             <field name="name">Can</field>
-            <field name="category_id" ref="uom.product_uom_categ_unit"/>
-            <field name="factor">1.0</field>
-            <field name="uom_type">bigger</field>
-            <field name="rounding">0.01</field>
             <field name="etax_code">CA</field>
             <field name="etax_name_th">กระป๋อง</field>
         </record>
@@ -152,10 +123,6 @@
         <!-- Bag (ถุง) -->
         <record id="uom_bag" model="uom.uom">
             <field name="name">Bag</field>
-            <field name="category_id" ref="uom.product_uom_categ_unit"/>
-            <field name="factor">1.0</field>
-            <field name="uom_type">bigger</field>
-            <field name="rounding">0.01</field>
             <field name="etax_code">BG</field>
             <field name="etax_name_th">ถุง</field>
         </record>
@@ -163,32 +130,8 @@
         <!-- Roll (ม้วน) -->
         <record id="uom_roll" model="uom.uom">
             <field name="name">Roll</field>
-            <field name="category_id" ref="uom.product_uom_categ_unit"/>
-            <field name="factor">1.0</field>
-            <field name="uom_type">bigger</field>
-            <field name="rounding">0.01</field>
-            <field name="etax_code">RO</field>
-            <field name="etax_name_th">ม้วน</field>
-        </record>
-        
-        <!-- Sheet (แผ่น) -->
-        <record id="uom_sheet" model="uom.uom">
-            <field name="name">Sheet</field>
-            <field name="category_id" ref="uom.product_uom_categ_unit"/>
-            <field name="factor">1.0</field>
-            <field name="uom_type">bigger</field>
-            <field name="rounding">0.01</field>
-            <field name="etax_code">ST</field>
-            <field name="etax_name_th">แผ่น</field>
-        </record>
-        
-        <!-- Carton (กล่องใหญ่) -->
         <record id="uom_carton" model="uom.uom">
             <field name="name">Carton</field>
-            <field name="category_id" ref="uom.product_uom_categ_unit"/>
-            <field name="factor">1.0</field>
-            <field name="uom_type">bigger</field>
-            <field name="rounding">0.01</field>
             <field name="etax_code">CT</field>
             <field name="etax_name_th">กล่องใหญ่</field>
         </record>

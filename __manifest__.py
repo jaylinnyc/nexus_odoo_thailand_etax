@@ -32,16 +32,13 @@
     'depends': [
         'base',
         'account',
-        'uom',
     ],
     'data': [
         'security/ir.model.access.csv',
         'data/etax_data.xml',
-        'data/etax_uom_mapping.xml',
         'views/res_company_views.xml',
         'views/res_partner_views.xml',
         'views/account_move_views.xml',
-        'views/uom_uom_views.xml',
         'views/etax_excel_export_wizard_views.xml',
         'views/etax_invoice_report_views.xml',
         'views/menu_views.xml',

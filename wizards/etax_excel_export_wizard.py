@@ -445,13 +445,13 @@ class EtaxExcelExportWizard(models.TransientModel):
                 description = line.name or item_name
                 quantity = line.quantity
                 
-                # Get UoM with e-Tax codes
+                # Get UoM name - e-Tax service will handle code mapping
                 if line.product_uom_id:
-                    unit = line.product_uom_id.get_etax_code()
-                    unit_name = line.product_uom_id.get_etax_name_th()
+                    unit = line.product_uom_id.name
+                    unit_name = line.product_uom_id.name
                 else:
-                    unit = 'C62'
-                    unit_name = 'หน่วย'
+                    unit = 'Unit'
+                    unit_name = 'Unit'
                 
                 unit_price = line.price_unit
                 
