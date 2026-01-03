@@ -47,14 +47,10 @@
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_invoice_tree"/>
         <field name="arch" type="xml">
-            <tree position="attributes">
-                <attribute name="decoration-info">etax_exported == True and etax_finalized == False</attribute>
-                <attribute name="decoration-success">etax_finalized == True</attribute>
-            </tree>
-            <field name="state" position="after">
+            <xpath expr="//field[@name='status_in_payment']" position="after">
                 <field name="etax_exported" optional="show"/>
                 <field name="etax_finalized" optional="show"/>
-            </field>
+            </xpath>
         </field>
     </record>
     
