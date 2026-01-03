@@ -1,0 +1,3532 @@
+{
+  "company_fields": [
+    {
+      "id": 4631,
+      "name": "account_cash_basis_base_account_id",
+      "field_description": "Base Tax Received Account",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4621,
+      "name": "account_default_pos_receivable_account_id",
+      "field_description": "Default PoS Receivable Account",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4638,
+      "name": "account_discount_expense_allocation_id",
+      "field_description": "Separate account for expense discount",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4637,
+      "name": "account_discount_income_allocation_id",
+      "field_description": "Separate account for income discount",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 6564,
+      "name": "account_display_representative_field",
+      "field_description": "Account Display Representative Field",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4628,
+      "name": "account_enabled_tax_country_ids",
+      "field_description": "l10n-used countries",
+      "ttype": "many2many",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4627,
+      "name": "account_fiscal_country_group_codes",
+      "field_description": "Account Fiscal Country Group Codes",
+      "ttype": "json",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4626,
+      "name": "account_fiscal_country_id",
+      "field_description": "Fiscal Country",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 12245,
+      "name": "account_folder_id",
+      "field_description": "Accounting Folder",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4596,
+      "name": "account_journal_early_pay_discount_gain_account_id",
+      "field_description": "Cash Discount Write-Off Gain Account",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4597,
+      "name": "account_journal_early_pay_discount_loss_account_id",
+      "field_description": "Cash Discount Write-Off Loss Account",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4595,
+      "name": "account_journal_suspense_account_id",
+      "field_description": "Journal Suspense Account",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 6565,
+      "name": "account_last_return_cron_refresh",
+      "field_description": "Account Last Return Cron Refresh",
+      "ttype": "datetime",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4617,
+      "name": "account_opening_date",
+      "field_description": "Opening Entry",
+      "ttype": "date",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4616,
+      "name": "account_opening_journal_id",
+      "field_description": "Opening Journal",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4615,
+      "name": "account_opening_move_id",
+      "field_description": "Opening Journal Entry",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4642,
+      "name": "account_price_include",
+      "field_description": "Default Sales Price Include",
+      "ttype": "selection",
+      "required": true,
+      "readonly": false
+    },
+    {
+      "id": 8812,
+      "name": "account_production_wip_account_id",
+      "field_description": "Production WIP Account",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 8813,
+      "name": "account_production_wip_overhead_account_id",
+      "field_description": "Production WIP Overhead Account",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4601,
+      "name": "account_purchase_receipt_fiscal_position_id",
+      "field_description": "Default Purchase Receipt Fiscal Position",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4600,
+      "name": "account_purchase_tax_id",
+      "field_description": "Default Purchase Tax",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 6563,
+      "name": "account_representative_id",
+      "field_description": "Accounting Firm",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 6556,
+      "name": "account_return_periodicity",
+      "field_description": "Delay units",
+      "ttype": "selection",
+      "required": true,
+      "readonly": false
+    },
+    {
+      "id": 6557,
+      "name": "account_return_reminder_day",
+      "field_description": "Start from",
+      "ttype": "integer",
+      "required": true,
+      "readonly": false
+    },
+    {
+      "id": 6560,
+      "name": "account_revaluation_expense_provision_account_id",
+      "field_description": "Expense Provision Account",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 6561,
+      "name": "account_revaluation_income_provision_account_id",
+      "field_description": "Income Provision Account",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 6559,
+      "name": "account_revaluation_journal_id",
+      "field_description": "Account Revaluation Journal",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4599,
+      "name": "account_sale_tax_id",
+      "field_description": "Default Sale Tax",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 8810,
+      "name": "account_stock_journal_id",
+      "field_description": "Stock Journal",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 8811,
+      "name": "account_stock_valuation_id",
+      "field_description": "Stock Valuation Account",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4632,
+      "name": "account_storno",
+      "field_description": "Storno accounting",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 6558,
+      "name": "account_tax_return_journal_id",
+      "field_description": "Journal",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 6562,
+      "name": "account_tax_unit_ids",
+      "field_description": "Tax Units",
+      "ttype": "many2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4613,
+      "name": "account_use_credit_limit",
+      "field_description": "Sales Credit Limit",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1164,
+      "name": "active",
+      "field_description": "Active",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 2731,
+      "name": "alias_domain_id",
+      "field_description": "Email Domain",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1168,
+      "name": "all_child_ids",
+      "field_description": "All Child",
+      "ttype": "one2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4606,
+      "name": "anglo_saxon_accounting",
+      "field_description": "Use anglo-saxon accounting",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 7785,
+      "name": "annual_inventory_day",
+      "field_description": "Day of the month",
+      "ttype": "integer",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 7784,
+      "name": "annual_inventory_month",
+      "field_description": "Annual Inventory Month",
+      "ttype": "selection",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4624,
+      "name": "automatic_entry_default_journal_id",
+      "field_description": "Automatic Entry Default Journal",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4641,
+      "name": "autopost_bills",
+      "field_description": "Auto-validate bills",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 10703,
+      "name": "background_image",
+      "field_description": "Home Menu Background Image",
+      "ttype": "binary",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4591,
+      "name": "bank_account_code_prefix",
+      "field_description": "Prefix of the bank accounts",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1187,
+      "name": "bank_ids",
+      "field_description": "Banks",
+      "ttype": "one2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4607,
+      "name": "bank_journal_ids",
+      "field_description": "Bank Journals",
+      "ttype": "one2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4614,
+      "name": "batch_payment_sequence_id",
+      "field_description": "Batch Payment Sequence",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 2732,
+      "name": "bounce_email",
+      "field_description": "Bounce Email",
+      "ttype": "char",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 2733,
+      "name": "bounce_formatted",
+      "field_description": "Bounce",
+      "ttype": "char",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4592,
+      "name": "cash_account_code_prefix",
+      "field_description": "Prefix of the cash accounts",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 2734,
+      "name": "catchall_email",
+      "field_description": "Catchall Email",
+      "ttype": "char",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 2735,
+      "name": "catchall_formatted",
+      "field_description": "Catchall",
+      "ttype": "char",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4590,
+      "name": "chart_template",
+      "field_description": "Chart Template",
+      "ttype": "selection",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1167,
+      "name": "child_ids",
+      "field_description": "Branches",
+      "ttype": "one2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1185,
+      "name": "city",
+      "field_description": "City",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1201,
+      "name": "color",
+      "field_description": "Color",
+      "ttype": "integer",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1175,
+      "name": "company_details",
+      "field_description": "Company Details",
+      "ttype": "html",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 10249,
+      "name": "company_expense_allowed_payment_method_line_ids",
+      "field_description": "Payment methods available for expenses paid by company",
+      "ttype": "many2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1194,
+      "name": "company_registry",
+      "field_description": "Company ID",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1195,
+      "name": "company_registry_placeholder",
+      "field_description": "Company Registry Placeholder",
+      "ttype": "char",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4643,
+      "name": "company_vat_placeholder",
+      "field_description": "Company Vat Placeholder",
+      "ttype": "char",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 10061,
+      "name": "contract_expiration_notice_period",
+      "field_description": "Contract Expiry Notice Period",
+      "ttype": "integer",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 8816,
+      "name": "cost_method",
+      "field_description": "Cost Method",
+      "ttype": "selection",
+      "required": true,
+      "readonly": false
+    },
+    {
+      "id": 1189,
+      "name": "country_code",
+      "field_description": "Country Code",
+      "ttype": "char",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1188,
+      "name": "country_id",
+      "field_description": "Country",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1206,
+      "name": "create_date",
+      "field_description": "Created on",
+      "ttype": "datetime",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1205,
+      "name": "create_uid",
+      "field_description": "Created by",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4603,
+      "name": "currency_exchange_journal_id",
+      "field_description": "Exchange Gain or Loss Journal",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1180,
+      "name": "currency_id",
+      "field_description": "Currency",
+      "ttype": "many2one",
+      "required": true,
+      "readonly": false
+    },
+    {
+      "id": 6252,
+      "name": "currency_interval_unit",
+      "field_description": "Interval Unit",
+      "ttype": "selection",
+      "required": true,
+      "readonly": false
+    },
+    {
+      "id": 6253,
+      "name": "currency_next_execution_date",
+      "field_description": "Next Execution Date",
+      "ttype": "date",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 6254,
+      "name": "currency_provider",
+      "field_description": "Service Provider",
+      "ttype": "selection",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 9298,
+      "name": "days_to_purchase",
+      "field_description": "Days to Purchase",
+      "ttype": "float",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4594,
+      "name": "default_cash_difference_expense_account_id",
+      "field_description": "Cash Difference Expense",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4593,
+      "name": "default_cash_difference_income_account_id",
+      "field_description": "Cash Difference Income",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 2736,
+      "name": "default_from_email",
+      "field_description": "Default From",
+      "ttype": "char",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 6074,
+      "name": "deferred_expense_account_id",
+      "field_description": "Deferred Expense Account",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 6076,
+      "name": "deferred_expense_amount_computation_method",
+      "field_description": "Deferred Expense Based on",
+      "ttype": "selection",
+      "required": true,
+      "readonly": false
+    },
+    {
+      "id": 6073,
+      "name": "deferred_expense_journal_id",
+      "field_description": "Deferred Expense Journal",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 6078,
+      "name": "deferred_revenue_account_id",
+      "field_description": "Deferred Revenue Account",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 6080,
+      "name": "deferred_revenue_amount_computation_method",
+      "field_description": "Deferred Revenue Based on",
+      "ttype": "selection",
+      "required": true,
+      "readonly": false
+    },
+    {
+      "id": 6077,
+      "name": "deferred_revenue_journal_id",
+      "field_description": "Deferred Revenue Journal",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4633,
+      "name": "display_account_storno",
+      "field_description": "Display Account Storno",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4611,
+      "name": "display_invoice_amount_total_words",
+      "field_description": "Total amount of invoice in letters",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4612,
+      "name": "display_invoice_tax_company_currency",
+      "field_description": "Taxes in company currency",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1162,
+      "name": "display_name",
+      "field_description": "Display Name",
+      "ttype": "char",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 12152,
+      "name": "documents_employee_folder_id",
+      "field_description": "Employees Folder",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 12154,
+      "name": "documents_hr_contracts_tags",
+      "field_description": "Documents Hr Contracts Tags",
+      "ttype": "many2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 12151,
+      "name": "documents_hr_settings",
+      "field_description": "Documents Hr Settings",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 12158,
+      "name": "documents_product_settings",
+      "field_description": "Documents Product Settings",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4625,
+      "name": "domestic_fiscal_position_id",
+      "field_description": "Domestic Fiscal Position",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 7300,
+      "name": "downpayment_account_id",
+      "field_description": "Downpayment Account",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1190,
+      "name": "email",
+      "field_description": "Email",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 2737,
+      "name": "email_formatted",
+      "field_description": "Formatted Email",
+      "ttype": "char",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 2738,
+      "name": "email_primary_color",
+      "field_description": "Email Button Text",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 2739,
+      "name": "email_secondary_color",
+      "field_description": "Email Button Color",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 10056,
+      "name": "employee_properties_definition",
+      "field_description": "Employee Properties",
+      "ttype": "properties_definition",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 12153,
+      "name": "employee_subfolders",
+      "field_description": "Employees Subfolder",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4589,
+      "name": "expects_chart_of_accounts",
+      "field_description": "Expects a Chart of Accounts",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4645,
+      "name": "expense_account_id",
+      "field_description": "Expense Account",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4622,
+      "name": "expense_accrual_account_id",
+      "field_description": "Expense Accrual Account",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4605,
+      "name": "expense_currency_exchange_account_id",
+      "field_description": "Loss Exchange Rate Account",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 10248,
+      "name": "expense_journal_id",
+      "field_description": "Default Expense Journal",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1197,
+      "name": "external_report_layout_id",
+      "field_description": "Document Template",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4634,
+      "name": "fiscal_position_ids",
+      "field_description": "Fiscal Position",
+      "ttype": "one2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4576,
+      "name": "fiscalyear_last_day",
+      "field_description": "Fiscalyear Last Day",
+      "ttype": "integer",
+      "required": true,
+      "readonly": false
+    },
+    {
+      "id": 4577,
+      "name": "fiscalyear_last_month",
+      "field_description": "Fiscalyear Last Month",
+      "ttype": "selection",
+      "required": true,
+      "readonly": false
+    },
+    {
+      "id": 4578,
+      "name": "fiscalyear_lock_date",
+      "field_description": "Global Lock Date",
+      "ttype": "date",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1198,
+      "name": "font",
+      "field_description": "Font",
+      "ttype": "selection",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4640,
+      "name": "force_restrictive_audit_trail",
+      "field_description": "Force Audit Trail",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 6970,
+      "name": "gain_account_id",
+      "field_description": "Gain Account",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 6075,
+      "name": "generate_deferred_expense_entries_method",
+      "field_description": "Generate Deferred Expense Entries",
+      "ttype": "selection",
+      "required": true,
+      "readonly": false
+    },
+    {
+      "id": 6079,
+      "name": "generate_deferred_revenue_entries_method",
+      "field_description": "Generate Deferred Revenue Entries",
+      "ttype": "selection",
+      "required": true,
+      "readonly": false
+    },
+    {
+      "id": 4582,
+      "name": "hard_lock_date",
+      "field_description": "Hard Lock Date",
+      "ttype": "date",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4565,
+      "name": "has_message",
+      "field_description": "Has Message",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 10537,
+      "name": "has_received_warning_stock_sms",
+      "field_description": "Has Received Warning Stock Sms",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 7786,
+      "name": "horizon_days",
+      "field_description": "Replenishment Horizon",
+      "ttype": "float",
+      "required": true,
+      "readonly": false
+    },
+    {
+      "id": 10060,
+      "name": "hr_presence_control_attendance",
+      "field_description": "Based on attendances",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 10058,
+      "name": "hr_presence_control_email",
+      "field_description": "Based on number of emails sent",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 10054,
+      "name": "hr_presence_control_email_amount",
+      "field_description": "# emails to send",
+      "ttype": "integer",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 10059,
+      "name": "hr_presence_control_ip",
+      "field_description": "Based on IP Address",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 10055,
+      "name": "hr_presence_control_ip_list",
+      "field_description": "Valid IP addresses",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 10057,
+      "name": "hr_presence_control_login",
+      "field_description": "Based on user status in system",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 25228,
+      "name": "iap_enrich_auto_done",
+      "field_description": "Enrich Done",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1161,
+      "name": "id",
+      "field_description": "ID",
+      "ttype": "integer",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4644,
+      "name": "income_account_id",
+      "field_description": "Income Account",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4604,
+      "name": "income_currency_exchange_account_id",
+      "field_description": "Gain Exchange Rate Account",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4608,
+      "name": "incoterm_id",
+      "field_description": "Default incoterm",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 7781,
+      "name": "internal_transit_location_id",
+      "field_description": "Internal Transit Location",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 8814,
+      "name": "inventory_period",
+      "field_description": "Inventory Period",
+      "ttype": "selection",
+      "required": true,
+      "readonly": false
+    },
+    {
+      "id": 8815,
+      "name": "inventory_valuation",
+      "field_description": "Valuation",
+      "ttype": "selection",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4618,
+      "name": "invoice_terms",
+      "field_description": "Default Terms and Conditions",
+      "ttype": "html",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4620,
+      "name": "invoice_terms_html",
+      "field_description": "Default Terms and Conditions as a Web page",
+      "ttype": "html",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 6069,
+      "name": "invoicing_switch_threshold",
+      "field_description": "Invoicing Switch Threshold",
+      "ttype": "date",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1176,
+      "name": "is_company_details_empty",
+      "field_description": "Is Company Details Empty",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1202,
+      "name": "layout_background",
+      "field_description": "Layout Background",
+      "ttype": "selection",
+      "required": true,
+      "readonly": false
+    },
+    {
+      "id": 1203,
+      "name": "layout_background_image",
+      "field_description": "Background Image",
+      "ttype": "binary",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 25306,
+      "name": "lc_journal_id",
+      "field_description": "Lc Journal",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4610,
+      "name": "link_qr_code",
+      "field_description": "Display Link QR-code",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1177,
+      "name": "logo",
+      "field_description": "Company Logo",
+      "ttype": "binary",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1178,
+      "name": "logo_web",
+      "field_description": "Logo Web",
+      "ttype": "binary",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 6971,
+      "name": "loss_account_id",
+      "field_description": "Loss Account",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4570,
+      "name": "message_attachment_count",
+      "field_description": "Attachment Count",
+      "ttype": "integer",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4562,
+      "name": "message_follower_ids",
+      "field_description": "Followers",
+      "ttype": "one2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4568,
+      "name": "message_has_error",
+      "field_description": "Message Delivery error",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4569,
+      "name": "message_has_error_counter",
+      "field_description": "Number of errors",
+      "ttype": "integer",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 9414,
+      "name": "message_has_sms_error",
+      "field_description": "SMS Delivery error",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4564,
+      "name": "message_ids",
+      "field_description": "Messages",
+      "ttype": "one2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4561,
+      "name": "message_is_follower",
+      "field_description": "Is Follower",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4566,
+      "name": "message_needaction",
+      "field_description": "Action Needed",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4567,
+      "name": "message_needaction_counter",
+      "field_description": "Number of Actions",
+      "ttype": "integer",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4563,
+      "name": "message_partner_ids",
+      "field_description": "Followers (Partners)",
+      "ttype": "many2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4635,
+      "name": "multi_vat_foreign_country_ids",
+      "field_description": "Foreign VAT countries",
+      "ttype": "many2many",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1163,
+      "name": "name",
+      "field_description": "Company Name",
+      "ttype": "char",
+      "required": true,
+      "readonly": false
+    },
+    {
+      "id": 7750,
+      "name": "nomenclature_id",
+      "field_description": "Nomenclature",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1196,
+      "name": "paperformat_id",
+      "field_description": "Paper format",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1166,
+      "name": "parent_id",
+      "field_description": "Parent Company",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1170,
+      "name": "parent_ids",
+      "field_description": "Parent",
+      "ttype": "many2many",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1169,
+      "name": "parent_path",
+      "field_description": "Parent Path",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1172,
+      "name": "partner_id",
+      "field_description": "Partner",
+      "ttype": "many2one",
+      "required": true,
+      "readonly": false
+    },
+    {
+      "id": 1191,
+      "name": "phone",
+      "field_description": "Phone",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 9182,
+      "name": "po_double_validation",
+      "field_description": "Levels of Approvals",
+      "ttype": "selection",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 9183,
+      "name": "po_double_validation_amount",
+      "field_description": "Double validation amount",
+      "ttype": "monetary",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 9181,
+      "name": "po_lock",
+      "field_description": "Purchase Order Modification",
+      "ttype": "selection",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 7295,
+      "name": "portal_confirmation_pay",
+      "field_description": "Online Payment",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 7294,
+      "name": "portal_confirmation_sign",
+      "field_description": "Online Signature",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 6070,
+      "name": "predict_bill_product",
+      "field_description": "Predict Bill Product",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 7296,
+      "name": "prepayment_percent",
+      "field_description": "Prepayment percentage",
+      "ttype": "float",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4646,
+      "name": "price_difference_account_id",
+      "field_description": "Price Difference Account",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1199,
+      "name": "primary_color",
+      "field_description": "Primary Color",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 12159,
+      "name": "product_folder_id",
+      "field_description": "Product Folder",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 12160,
+      "name": "product_tag_ids",
+      "field_description": "Product Tag",
+      "ttype": "many2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4581,
+      "name": "purchase_lock_date",
+      "field_description": "Purchase Lock date",
+      "ttype": "date",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4609,
+      "name": "qr_code",
+      "field_description": "Display QR-code on invoices",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4636,
+      "name": "quick_edit_mode",
+      "field_description": "Quick encoding",
+      "ttype": "selection",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 7297,
+      "name": "quotation_validity_days",
+      "field_description": "Default Quotation Validity",
+      "ttype": "integer",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1174,
+      "name": "report_footer",
+      "field_description": "Report Footer",
+      "ttype": "html",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1173,
+      "name": "report_header",
+      "field_description": "Company Tagline",
+      "ttype": "html",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 26133,
+      "name": "report_header_image",
+      "field_description": "Custom Report Header Image",
+      "ttype": "binary",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 26135,
+      "name": "report_header_image_filename",
+      "field_description": "Header Image Filename",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1913,
+      "name": "resource_calendar_id",
+      "field_description": "Default Working Hours",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1912,
+      "name": "resource_calendar_ids",
+      "field_description": "Working Hours",
+      "ttype": "one2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4639,
+      "name": "restrictive_audit_trail",
+      "field_description": "Restrictive Audit Trail",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4623,
+      "name": "revenue_accrual_account_id",
+      "field_description": "Revenue Accrual Account",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1171,
+      "name": "root_id",
+      "field_description": "Root",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 7298,
+      "name": "sale_discount_product_id",
+      "field_description": "Discount Product",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4580,
+      "name": "sale_lock_date",
+      "field_description": "Sales Lock Date",
+      "ttype": "date",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 7299,
+      "name": "sale_onboarding_payment_method",
+      "field_description": "Sale onboarding selected payment method",
+      "ttype": "selection",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 7603,
+      "name": "sale_order_template_id",
+      "field_description": "Default Sale Template",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1200,
+      "name": "secondary_color",
+      "field_description": "Secondary Color",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 8978,
+      "name": "security_lead",
+      "field_description": "Sales Safety Days",
+      "ttype": "float",
+      "required": true,
+      "readonly": false
+    },
+    {
+      "id": 1165,
+      "name": "sequence",
+      "field_description": "Sequence",
+      "ttype": "integer",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 6071,
+      "name": "sign_invoice",
+      "field_description": "Display signing field on invoices",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 25373,
+      "name": "sign_terms",
+      "field_description": "Sign Default Terms and Conditions",
+      "ttype": "html",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 25375,
+      "name": "sign_terms_html",
+      "field_description": "Sign Default Terms and Conditions as a Web page",
+      "ttype": "html",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 25374,
+      "name": "sign_terms_type",
+      "field_description": "Sign Terms & Conditions format",
+      "ttype": "selection",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 25376,
+      "name": "signing_certificate_id",
+      "field_description": "Signing Certificate",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 6072,
+      "name": "signing_user",
+      "field_description": "Signing User",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1186,
+      "name": "state_id",
+      "field_description": "Fed. State",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 7788,
+      "name": "stock_confirmation_type",
+      "field_description": "Stock Confirmation Type",
+      "ttype": "selection",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 7783,
+      "name": "stock_mail_confirmation_template_id",
+      "field_description": "Email Template confirmation picking",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 7782,
+      "name": "stock_move_email_validation",
+      "field_description": "Email Confirmation picking",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 10536,
+      "name": "stock_sms_confirmation_template_id",
+      "field_description": "SMS Template",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 7787,
+      "name": "stock_text_confirmation",
+      "field_description": "Stock Text Confirmation",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1182,
+      "name": "street",
+      "field_description": "Street",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1183,
+      "name": "street2",
+      "field_description": "Street2",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4602,
+      "name": "tax_calculation_rounding_method",
+      "field_description": "Tax Calculation Rounding Method",
+      "ttype": "selection",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4630,
+      "name": "tax_cash_basis_journal_id",
+      "field_description": "Cash Basis Journal",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4629,
+      "name": "tax_exigibility",
+      "field_description": "Use Cash Basis",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4579,
+      "name": "tax_lock_date",
+      "field_description": "Tax Return Lock Date",
+      "ttype": "date",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4619,
+      "name": "terms_type",
+      "field_description": "Terms & Conditions format",
+      "ttype": "selection",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 6555,
+      "name": "totals_below_sections",
+      "field_description": "Add totals below sections",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4598,
+      "name": "transfer_account_code_prefix",
+      "field_description": "Prefix of the transfer accounts",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4588,
+      "name": "transfer_account_id",
+      "field_description": "Inter-Banks Transfer Account",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1204,
+      "name": "uninstalled_l10n_module_ids",
+      "field_description": "Uninstalled L10N Module",
+      "ttype": "many2many",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 26134,
+      "name": "use_custom_report_header",
+      "field_description": "Use Custom Report Header",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4583,
+      "name": "user_fiscalyear_lock_date",
+      "field_description": "User Fiscalyear Lock Date",
+      "ttype": "date",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4587,
+      "name": "user_hard_lock_date",
+      "field_description": "User Hard Lock Date",
+      "ttype": "date",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1181,
+      "name": "user_ids",
+      "field_description": "Accepted Users",
+      "ttype": "many2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4586,
+      "name": "user_purchase_lock_date",
+      "field_description": "User Purchase Lock Date",
+      "ttype": "date",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4585,
+      "name": "user_sale_lock_date",
+      "field_description": "User Sale Lock Date",
+      "ttype": "date",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4584,
+      "name": "user_tax_lock_date",
+      "field_description": "User Tax Lock Date",
+      "ttype": "date",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1179,
+      "name": "uses_default_logo",
+      "field_description": "Uses Default Logo",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1193,
+      "name": "vat",
+      "field_description": "Tax ID",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1192,
+      "name": "website",
+      "field_description": "Website Link",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4571,
+      "name": "website_message_ids",
+      "field_description": "Website Messages",
+      "ttype": "one2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 10062,
+      "name": "work_permit_expiration_notice_period",
+      "field_description": "Work Permit Expiry Notice Period",
+      "ttype": "integer",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1208,
+      "name": "write_date",
+      "field_description": "Last Updated on",
+      "ttype": "datetime",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1207,
+      "name": "write_uid",
+      "field_description": "Last Updated by",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1184,
+      "name": "zip",
+      "field_description": "Zip",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    }
+  ],
+  "partner_fields": [
+    {
+      "id": 4298,
+      "name": "account_move_count",
+      "field_description": "Account Move Count",
+      "ttype": "integer",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 6389,
+      "name": "account_represented_company_ids",
+      "field_description": "Account Represented Company",
+      "ttype": "one2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1028,
+      "name": "active",
+      "field_description": "Active",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1013,
+      "name": "active_lang_count",
+      "field_description": "Active Lang Count",
+      "ttype": "integer",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 25808,
+      "name": "activity_calendar_event_id",
+      "field_description": "Next Activity Calendar Event",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 2960,
+      "name": "activity_date_deadline",
+      "field_description": "Next Activity Deadline",
+      "ttype": "date",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 2963,
+      "name": "activity_exception_decoration",
+      "field_description": "Activity Exception Decoration",
+      "ttype": "selection",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 2964,
+      "name": "activity_exception_icon",
+      "field_description": "Icon",
+      "ttype": "char",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 2955,
+      "name": "activity_ids",
+      "field_description": "Activities",
+      "ttype": "one2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 2956,
+      "name": "activity_state",
+      "field_description": "Activity State",
+      "ttype": "selection",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 2962,
+      "name": "activity_summary",
+      "field_description": "Next Activity Summary",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 2959,
+      "name": "activity_type_icon",
+      "field_description": "Activity Type Icon",
+      "ttype": "char",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 2958,
+      "name": "activity_type_id",
+      "field_description": "Next Activity Type",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 2957,
+      "name": "activity_user_id",
+      "field_description": "Responsible User",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 12320,
+      "name": "agent_ids",
+      "field_description": "Agent",
+      "ttype": "one2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1060,
+      "name": "application_statistics",
+      "field_description": "Stats",
+      "ttype": "json",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4314,
+      "name": "autopost_bills",
+      "field_description": "Auto-post bills",
+      "ttype": "selection",
+      "required": true,
+      "readonly": false
+    },
+    {
+      "id": 4310,
+      "name": "available_invoice_template_pdf_report_ids",
+      "field_description": "Available Invoice Template Pdf Report",
+      "ttype": "one2many",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 6195,
+      "name": "available_peppol_eas",
+      "field_description": "Available Peppol Eas",
+      "ttype": "json",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1002,
+      "name": "avatar_1024",
+      "field_description": "Avatar 1024",
+      "ttype": "binary",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1005,
+      "name": "avatar_128",
+      "field_description": "Avatar 128",
+      "ttype": "binary",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1001,
+      "name": "avatar_1920",
+      "field_description": "Avatar",
+      "ttype": "binary",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1004,
+      "name": "avatar_256",
+      "field_description": "Avatar 256",
+      "ttype": "binary",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1003,
+      "name": "avatar_512",
+      "field_description": "Avatar 512",
+      "ttype": "binary",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4301,
+      "name": "bank_account_count",
+      "field_description": "Bank",
+      "ttype": "integer",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1024,
+      "name": "bank_ids",
+      "field_description": "Banks",
+      "ttype": "one2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1058,
+      "name": "barcode",
+      "field_description": "Barcode",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 9200,
+      "name": "buyer_id",
+      "field_description": "Buyer",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 25811,
+      "name": "calendar_last_notif_ack",
+      "field_description": "Last notification marked as read from base Calendar",
+      "ttype": "datetime",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1027,
+      "name": "category_id",
+      "field_description": "Tags",
+      "ttype": "many2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 2972,
+      "name": "channel_ids",
+      "field_description": "Channels",
+      "ttype": "many2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 2973,
+      "name": "channel_member_ids",
+      "field_description": "Channel Member",
+      "ttype": "one2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1010,
+      "name": "child_ids",
+      "field_description": "Contact",
+      "ttype": "one2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1036,
+      "name": "city",
+      "field_description": "City",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1050,
+      "name": "color",
+      "field_description": "Color Index",
+      "ttype": "integer",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1026,
+      "name": "comment",
+      "field_description": "Notes",
+      "ttype": "html",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1056,
+      "name": "commercial_company_name",
+      "field_description": "Company Name Entity",
+      "ttype": "char",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1055,
+      "name": "commercial_partner_id",
+      "field_description": "Commercial Entity",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1049,
+      "name": "company_id",
+      "field_description": "Company",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1057,
+      "name": "company_name",
+      "field_description": "Company Name",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1021,
+      "name": "company_registry",
+      "field_description": "Company ID",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1022,
+      "name": "company_registry_label",
+      "field_description": "Company ID Label",
+      "ttype": "char",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1023,
+      "name": "company_registry_placeholder",
+      "field_description": "Company Registry Placeholder",
+      "ttype": "char",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1048,
+      "name": "company_type",
+      "field_description": "Company Type",
+      "ttype": "selection",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1007,
+      "name": "complete_name",
+      "field_description": "Complete Name",
+      "ttype": "char",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1054,
+      "name": "contact_address",
+      "field_description": "Complete Address",
+      "ttype": "char",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1831,
+      "name": "contact_address_complete",
+      "field_description": "Contact Address Complete",
+      "ttype": "char",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 2976,
+      "name": "contact_address_inline",
+      "field_description": "Inlined Complete Address",
+      "ttype": "char",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4300,
+      "name": "contract_ids",
+      "field_description": "Partner Contracts",
+      "ttype": "one2many",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1039,
+      "name": "country_code",
+      "field_description": "Country Code",
+      "ttype": "char",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1038,
+      "name": "country_id",
+      "field_description": "Country",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1062,
+      "name": "create_date",
+      "field_description": "Created on",
+      "ttype": "datetime",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1061,
+      "name": "create_uid",
+      "field_description": "Created by",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4282,
+      "name": "credit",
+      "field_description": "Total Receivable",
+      "ttype": "monetary",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4284,
+      "name": "credit_limit",
+      "field_description": "Credit Limit",
+      "ttype": "float",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4283,
+      "name": "credit_to_invoice",
+      "field_description": "Credit To Invoice",
+      "ttype": "monetary",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4290,
+      "name": "currency_id",
+      "field_description": "Currency",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4313,
+      "name": "customer_rank",
+      "field_description": "Customer Rank",
+      "ttype": "integer",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4287,
+      "name": "days_sales_outstanding",
+      "field_description": "Days Sales Outstanding (DSO)",
+      "ttype": "float",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4288,
+      "name": "debit",
+      "field_description": "Total Payable",
+      "ttype": "monetary",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4308,
+      "name": "display_invoice_edi_format",
+      "field_description": "Display Invoice Edi Format",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4311,
+      "name": "display_invoice_template_pdf_report_id",
+      "field_description": "Display Invoice Template Pdf Report",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 993,
+      "name": "display_name",
+      "field_description": "Display Name",
+      "ttype": "char",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 12051,
+      "name": "document_count",
+      "field_description": "Document Count",
+      "ttype": "integer",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 12050,
+      "name": "document_ids",
+      "field_description": "Documents",
+      "ttype": "one2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4281,
+      "name": "duplicate_bank_partner_ids",
+      "field_description": "Duplicate Bank Partner",
+      "ttype": "many2many",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1042,
+      "name": "email",
+      "field_description": "Email",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1043,
+      "name": "email_formatted",
+      "field_description": "Formatted Email",
+      "ttype": "char",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 2952,
+      "name": "email_normalized",
+      "field_description": "Normalized Email",
+      "ttype": "char",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1029,
+      "name": "employee",
+      "field_description": "Employee",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 10064,
+      "name": "employee_ids",
+      "field_description": "Employees",
+      "ttype": "one2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 10065,
+      "name": "employees_count",
+      "field_description": "Employees Count",
+      "ttype": "integer",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4277,
+      "name": "fiscal_country_codes",
+      "field_description": "Fiscal Country Codes",
+      "ttype": "char",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4278,
+      "name": "fiscal_country_group_codes",
+      "field_description": "Fiscal Country Group Codes",
+      "ttype": "json",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 10579,
+      "name": "followup_line_id",
+      "field_description": "Follow-up Level",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 10569,
+      "name": "followup_next_action_date",
+      "field_description": "Next reminder",
+      "ttype": "date",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 10580,
+      "name": "followup_reminder_type",
+      "field_description": "Reminders",
+      "ttype": "selection",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 10581,
+      "name": "followup_responsible_id",
+      "field_description": "Responsible",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 10578,
+      "name": "followup_status",
+      "field_description": "Follow-up Status",
+      "ttype": "selection",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1030,
+      "name": "function",
+      "field_description": "Job Position",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 9297,
+      "name": "group_on",
+      "field_description": "Week Day",
+      "ttype": "selection",
+      "required": true,
+      "readonly": false
+    },
+    {
+      "id": 9296,
+      "name": "group_rfq",
+      "field_description": "Group RFQ",
+      "ttype": "selection",
+      "required": true,
+      "readonly": false
+    },
+    {
+      "id": 2946,
+      "name": "has_message",
+      "field_description": "Has Message",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 10582,
+      "name": "has_moves",
+      "field_description": "Has Moves",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 992,
+      "name": "id",
+      "field_description": "ID",
+      "ttype": "integer",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4304,
+      "name": "ignore_abnormal_invoice_amount",
+      "field_description": "Ignore Abnormal Invoice Amount",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4303,
+      "name": "ignore_abnormal_invoice_date",
+      "field_description": "Ignore Abnormal Invoice Date",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 2977,
+      "name": "im_status",
+      "field_description": "IM Status",
+      "ttype": "char",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 997,
+      "name": "image_1024",
+      "field_description": "Image 1024",
+      "ttype": "binary",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1000,
+      "name": "image_128",
+      "field_description": "Image 128",
+      "ttype": "binary",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 996,
+      "name": "image_1920",
+      "field_description": "Image",
+      "ttype": "binary",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 999,
+      "name": "image_256",
+      "field_description": "Image 256",
+      "ttype": "binary",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 998,
+      "name": "image_512",
+      "field_description": "Image 512",
+      "ttype": "binary",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1834,
+      "name": "image_medium",
+      "field_description": "Medium-sized image",
+      "ttype": "binary",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1047,
+      "name": "industry_id",
+      "field_description": "Industry",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4306,
+      "name": "invoice_edi_format",
+      "field_description": "eInvoice format",
+      "ttype": "selection",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4307,
+      "name": "invoice_edi_format_store",
+      "field_description": "Invoice Edi Format Store",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4299,
+      "name": "invoice_ids",
+      "field_description": "Invoices",
+      "ttype": "one2many",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4305,
+      "name": "invoice_sending_method",
+      "field_description": "Invoice sending",
+      "ttype": "selection",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4309,
+      "name": "invoice_template_pdf_report_id",
+      "field_description": "Invoice report",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 2953,
+      "name": "is_blacklisted",
+      "field_description": "Blacklist",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1045,
+      "name": "is_company",
+      "field_description": "Is a Company",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 2974,
+      "name": "is_in_call",
+      "field_description": "Is In Call",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 6192,
+      "name": "is_peppol_edi_format",
+      "field_description": "Is Peppol Edi Format",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1046,
+      "name": "is_public",
+      "field_description": "Is Public",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 6191,
+      "name": "is_ubl_format",
+      "field_description": "Is Ubl Format",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 24929,
+      "name": "l10n_th_branch_name",
+      "field_description": "L10N Th Branch Name",
+      "ttype": "char",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1012,
+      "name": "lang",
+      "field_description": "Language",
+      "ttype": "selection",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1052,
+      "name": "main_user_id",
+      "field_description": "Main User",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 25809,
+      "name": "meeting_count",
+      "field_description": "# Meetings",
+      "ttype": "integer",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 25810,
+      "name": "meeting_ids",
+      "field_description": "Meetings",
+      "ttype": "many2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 2951,
+      "name": "message_attachment_count",
+      "field_description": "Attachment Count",
+      "ttype": "integer",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 2954,
+      "name": "message_bounce",
+      "field_description": "Bounce",
+      "ttype": "integer",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 2943,
+      "name": "message_follower_ids",
+      "field_description": "Followers",
+      "ttype": "one2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 2949,
+      "name": "message_has_error",
+      "field_description": "Message Delivery error",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 2950,
+      "name": "message_has_error_counter",
+      "field_description": "Number of errors",
+      "ttype": "integer",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 9556,
+      "name": "message_has_sms_error",
+      "field_description": "SMS Delivery error",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 2945,
+      "name": "message_ids",
+      "field_description": "Messages",
+      "ttype": "one2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 2942,
+      "name": "message_is_follower",
+      "field_description": "Is Follower",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 2947,
+      "name": "message_needaction",
+      "field_description": "Action Needed",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 2948,
+      "name": "message_needaction_counter",
+      "field_description": "Number of Actions",
+      "ttype": "integer",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 2944,
+      "name": "message_partner_ids",
+      "field_description": "Followers (Partners)",
+      "ttype": "many2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 2961,
+      "name": "my_activity_date_deadline",
+      "field_description": "My Activity Deadline",
+      "ttype": "date",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1006,
+      "name": "name",
+      "field_description": "Name",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 3789,
+      "name": "ocn_token",
+      "field_description": "OCN Token",
+      "ttype": "char",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 2978,
+      "name": "offline_since",
+      "field_description": "Offline since",
+      "ttype": "datetime",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 9292,
+      "name": "on_time_rate",
+      "field_description": "On-Time Delivery Rate",
+      "ttype": "float",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 6337,
+      "name": "online_partner_information",
+      "field_description": "Online Partner Information",
+      "ttype": "char",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1008,
+      "name": "parent_id",
+      "field_description": "Related Company",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1009,
+      "name": "parent_name",
+      "field_description": "Parent name",
+      "ttype": "char",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4280,
+      "name": "partner_company_registry_placeholder",
+      "field_description": "Partner Company Registry Placeholder",
+      "ttype": "char",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1040,
+      "name": "partner_latitude",
+      "field_description": "Geo Latitude",
+      "ttype": "float",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1041,
+      "name": "partner_longitude",
+      "field_description": "Geo Longitude",
+      "ttype": "float",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1053,
+      "name": "partner_share",
+      "field_description": "Share Partner",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4279,
+      "name": "partner_vat_placeholder",
+      "field_description": "Partner Vat Placeholder",
+      "ttype": "char",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4012,
+      "name": "payment_token_count",
+      "field_description": "Payment Token Count",
+      "ttype": "integer",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4011,
+      "name": "payment_token_ids",
+      "field_description": "Payment Tokens",
+      "ttype": "one2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 6194,
+      "name": "peppol_eas",
+      "field_description": "Peppol e-address (EAS)",
+      "ttype": "selection",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 6193,
+      "name": "peppol_endpoint",
+      "field_description": "Peppol Endpoint",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1044,
+      "name": "phone",
+      "field_description": "Phone",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 9386,
+      "name": "phone_blacklisted",
+      "field_description": "Blacklisted Phone is Phone",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 9387,
+      "name": "phone_mobile_search",
+      "field_description": "Phone Number",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 9384,
+      "name": "phone_sanitized",
+      "field_description": "Sanitized Number",
+      "ttype": "char",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 9385,
+      "name": "phone_sanitized_blacklisted",
+      "field_description": "Phone Blacklisted",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 7791,
+      "name": "picking_warn_msg",
+      "field_description": "Message for Stock Picking",
+      "ttype": "text",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 994,
+      "name": "properties",
+      "field_description": "Properties",
+      "ttype": "properties",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 995,
+      "name": "properties_base_definition_id",
+      "field_description": "Properties Base Definition",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4291,
+      "name": "property_account_payable_id",
+      "field_description": "Account Payable",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4293,
+      "name": "property_account_position_id",
+      "field_description": "Fiscal Position",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4292,
+      "name": "property_account_receivable_id",
+      "field_description": "Account Receivable",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4316,
+      "name": "property_inbound_payment_method_line_id",
+      "field_description": "Property Inbound Payment Method Line",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4315,
+      "name": "property_outbound_payment_method_line_id",
+      "field_description": "Property Outbound Payment Method Line",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4294,
+      "name": "property_payment_term_id",
+      "field_description": "Customer Payment Terms",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 3746,
+      "name": "property_product_pricelist",
+      "field_description": "Pricelist",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 9195,
+      "name": "property_purchase_currency_id",
+      "field_description": "Supplier Currency",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 7789,
+      "name": "property_stock_customer",
+      "field_description": "Customer Location",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 7790,
+      "name": "property_stock_supplier",
+      "field_description": "Vendor Location",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4295,
+      "name": "property_supplier_payment_term_id",
+      "field_description": "Vendor Payment Terms",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 9291,
+      "name": "purchase_line_ids",
+      "field_description": "Purchase Lines",
+      "ttype": "one2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 9196,
+      "name": "purchase_order_count",
+      "field_description": "Purchase Order Count",
+      "ttype": "integer",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 9197,
+      "name": "purchase_warn_msg",
+      "field_description": "Message for Purchase Order",
+      "ttype": "text",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 9198,
+      "name": "receipt_reminder_email",
+      "field_description": "Receipt Reminder",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1011,
+      "name": "ref",
+      "field_description": "Reference",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4296,
+      "name": "ref_company_ids",
+      "field_description": "Companies that refers to partner",
+      "ttype": "one2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 9199,
+      "name": "reminder_date_before_receipt",
+      "field_description": "Days Before Receipt",
+      "ttype": "integer",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 2975,
+      "name": "rtc_session_ids",
+      "field_description": "Rtc Session",
+      "ttype": "one2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 7301,
+      "name": "sale_order_count",
+      "field_description": "Sale Order Count",
+      "ttype": "integer",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 7302,
+      "name": "sale_order_ids",
+      "field_description": "Sales Order",
+      "ttype": "one2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 7303,
+      "name": "sale_warn_msg",
+      "field_description": "Message for Sales Order",
+      "ttype": "text",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1020,
+      "name": "same_company_registry_partner_id",
+      "field_description": "Partner with same Company Registry",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1019,
+      "name": "same_vat_partner_id",
+      "field_description": "Partner with same Tax ID",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1059,
+      "name": "self",
+      "field_description": "Self",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4286,
+      "name": "show_credit_limit",
+      "field_description": "Show Credit Limit",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 25386,
+      "name": "signature_count",
+      "field_description": "# Signatures",
+      "ttype": "integer",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 3224,
+      "name": "signup_type",
+      "field_description": "Signup Token Type",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 3747,
+      "name": "specific_property_product_pricelist",
+      "field_description": "Specific Property Product Pricelist",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1037,
+      "name": "state_id",
+      "field_description": "State",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1033,
+      "name": "street",
+      "field_description": "Street",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1034,
+      "name": "street2",
+      "field_description": "Street2",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 9293,
+      "name": "suggest_based_on",
+      "field_description": "Suggest Based On",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 9294,
+      "name": "suggest_days",
+      "field_description": "Suggest Days",
+      "ttype": "integer",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 9295,
+      "name": "suggest_percent",
+      "field_description": "Suggest Percent",
+      "ttype": "integer",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4297,
+      "name": "supplier_invoice_count",
+      "field_description": "# Vendor Bills",
+      "ttype": "integer",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4312,
+      "name": "supplier_rank",
+      "field_description": "Supplier Rank",
+      "ttype": "integer",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 10573,
+      "name": "total_all_due",
+      "field_description": "Total All Due",
+      "ttype": "monetary",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 10574,
+      "name": "total_all_overdue",
+      "field_description": "Total All Overdue",
+      "ttype": "monetary",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 10575,
+      "name": "total_due",
+      "field_description": "Total Due",
+      "ttype": "monetary",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4289,
+      "name": "total_invoiced",
+      "field_description": "Total Invoiced",
+      "ttype": "monetary",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 10576,
+      "name": "total_overdue",
+      "field_description": "Total Overdue",
+      "ttype": "monetary",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 10577,
+      "name": "total_overdue_followup",
+      "field_description": "Total Overdue Followup",
+      "ttype": "monetary",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 4302,
+      "name": "trust",
+      "field_description": "Degree of trust you have in this debtor",
+      "ttype": "selection",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1031,
+      "name": "type",
+      "field_description": "Address Type",
+      "ttype": "selection",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1032,
+      "name": "type_address_label",
+      "field_description": "Address Type Description",
+      "ttype": "char",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1014,
+      "name": "tz",
+      "field_description": "Timezone",
+      "ttype": "selection",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1015,
+      "name": "tz_offset",
+      "field_description": "Timezone offset",
+      "ttype": "char",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 10571,
+      "name": "unpaid_invoice_ids",
+      "field_description": "Unpaid Invoice",
+      "ttype": "one2many",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 10572,
+      "name": "unpaid_invoices_count",
+      "field_description": "Unpaid Invoices Count",
+      "ttype": "integer",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 10570,
+      "name": "unreconciled_aml_ids",
+      "field_description": "Unreconciled Aml",
+      "ttype": "one2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 4285,
+      "name": "use_partner_credit_limit",
+      "field_description": "Partner Limit",
+      "ttype": "boolean",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1016,
+      "name": "user_id",
+      "field_description": "Salesperson",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1051,
+      "name": "user_ids",
+      "field_description": "Users",
+      "ttype": "one2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1017,
+      "name": "vat",
+      "field_description": "Tax ID",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1018,
+      "name": "vat_label",
+      "field_description": "Tax ID Label",
+      "ttype": "char",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1025,
+      "name": "website",
+      "field_description": "Website Link",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 3799,
+      "name": "website_message_ids",
+      "field_description": "Website Messages",
+      "ttype": "one2many",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1064,
+      "name": "write_date",
+      "field_description": "Last Updated on",
+      "ttype": "datetime",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 1063,
+      "name": "write_uid",
+      "field_description": "Last Updated by",
+      "ttype": "many2one",
+      "required": false,
+      "readonly": true
+    },
+    {
+      "id": 25775,
+      "name": "x_studio_name2",
+      "field_description": "Name2",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    },
+    {
+      "id": 1035,
+      "name": "zip",
+      "field_description": "Zip",
+      "ttype": "char",
+      "required": false,
+      "readonly": false
+    }
+  ],
+  "sample_company": {
+    "id": 2,
+    "name": "PRS",
+    "vat": false,
+    "street": false,
+    "street2": false,
+    "city": false,
+    "state_id": false,
+    "zip": false,
+    "country_id": [
+      217,
+      "Thailand"
+    ]
+  }
+}

@@ -4,6 +4,7 @@ from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 import base64
 import logging
+import re
 from io import BytesIO
 from datetime import datetime
 
@@ -248,12 +249,14 @@ class EtaxExcelExportWizard(models.TransientModel):
         # Create worksheet
         worksheet = workbook.add_worksheet('e-Tax Invoices')
         
-        # Define columns matching the e-Tax template exactly
+        # Define columns matching the updated e-Tax requirements
         columns = [
+            # Document Header
             ('document_type', 15),
             ('document_number', 20),
             ('issue_date', 12),
-            ('purpose', 10),
+            ('purpose', 15),
+            # Seller Information
             ('seller_name', 30),
             ('seller_tax_id', 15),
             ('seller_branch', 12),
@@ -265,6 +268,7 @@ class EtaxExcelExportWizard(models.TransientModel):
             ('seller_postcode', 12),
             ('seller_phone', 15),
             ('seller_email', 25),
+            # Buyer Information
             ('buyer_name', 30),
             ('buyer_tax_id', 15),
             ('buyer_branch', 12),
@@ -276,20 +280,31 @@ class EtaxExcelExportWizard(models.TransientModel):
             ('buyer_postcode', 12),
             ('buyer_phone', 15),
             ('buyer_email', 25),
+            # Line Items
             ('line_id', 8),
             ('item_name', 30),
             ('description', 40),
             ('quantity', 10),
-            ('unit', 8),
-            ('unit_name', 12),
+            ('unit', 10),
+            ('unit_name', 15),
             ('unit_price', 12),
             ('discount', 10),
             ('amount', 12),
+            # Totals
             ('subtotal', 12),
             ('total_discount', 12),
             ('vat_rate', 10),
             ('vat_amount', 12),
             ('grand_total', 12),
+            # Reference Documents (for Credit/Debit Notes)
+            ('reference_number', 20),
+            ('reference_date', 12),
+            # Withholding Tax
+            ('withholding_tax_rate', 12),
+            ('withholding_tax_amount', 15),
+            # Payment Terms
+            ('payment_terms', 20),
+            ('due_date', 12),
         ]
         
         # Write header row
@@ -300,19 +315,37 @@ class EtaxExcelExportWizard(models.TransientModel):
         # Freeze header row
         worksheet.freeze_panes(1, 0)
         
+        # Track skipped invoices for warning message
+        skipped_invoices = []
+        
         # Write data rows - one row per line item
         row = 1
         for invoice in invoices:
-            # Determine document type
-            if invoice.move_type == 'out_invoice':
-                doc_type = 'TaxInvoice'
+            # Validate required fields
+            if not self._validate_invoice_for_export(invoice):
+                skipped_invoices.append((invoice.name, invoice.partner_id.name, 'Missing required fields'))
+                continue
+            
+            # Map document type to Thai RD codes
+            doc_type_map = {
+                'out_invoice': '388',      # Tax Invoice
+                'out_refund': '81',        # Credit Note
+                # Note: Debit notes would be '80' if supported
+            }
+            doc_type = doc_type_map.get(invoice.move_type, '388')
+            
+            # Determine purpose
+            if invoice.move_type == 'out_refund':
+                purpose = 'Credit Note'
+            elif invoice.move_type == 'out_invoice':
+                purpose = 'Sale'
             else:
-                doc_type = 'CreditNote'
+                purpose = ''
             
             # Get seller (company) info
             company = invoice.company_id
-            seller_tax_id = company.etax_tax_id or company.vat or ''
-            seller_branch = company.etax_branch_id or '00000'
+            seller_tax_id = self._clean_tax_id(company.etax_tax_id or company.vat or '')
+            seller_branch = self._clean_branch_id(company.etax_branch_id or '00000')
             
             # Build seller address parts
             seller_address = company.street or ''
@@ -333,8 +366,8 @@ class EtaxExcelExportWizard(models.TransientModel):
             
             # Get buyer (partner) info
             partner = invoice.partner_id
-            buyer_tax_id = partner.etax_effective_tax_id or partner.vat or ''
-            buyer_branch = partner.etax_branch_id or '00000'
+            buyer_tax_id = self._clean_tax_id(partner.etax_effective_tax_id or partner.vat or '')
+            buyer_branch = self._clean_branch_id(partner.etax_branch_id or '00000')
             
             # Build buyer address parts
             buyer_address = partner.street or ''
@@ -355,12 +388,17 @@ class EtaxExcelExportWizard(models.TransientModel):
             
             # Get invoice totals
             subtotal = invoice.amount_untaxed
-            total_discount = sum(line.discount * line.quantity * line.price_unit / 100 
-                                 for line in invoice.invoice_line_ids.filtered(lambda l: l.display_type == 'product'))
+            
+            # Calculate total discount
+            total_discount = 0
+            for line in invoice.invoice_line_ids.filtered(lambda l: l.display_type == 'product'):
+                if line.discount:
+                    total_discount += (line.discount / 100) * line.quantity * line.price_unit
+            
             vat_amount = invoice.amount_tax
             grand_total = invoice.amount_total
             
-            # Determine VAT rate (assume first tax line, typically 7% in Thailand)
+            # Determine VAT rate (typically 7% in Thailand)
             vat_rate = 7  # Default Thai VAT
             for line in invoice.invoice_line_ids.filtered(lambda l: l.display_type == 'product'):
                 if line.tax_ids:
@@ -370,19 +408,58 @@ class EtaxExcelExportWizard(models.TransientModel):
                             break
                     break
             
+            # Reference document fields (for Credit/Debit Notes)
+            reference_number = ''
+            reference_date = ''
+            if invoice.move_type == 'out_refund' and invoice.reversed_entry_id:
+                reference_number = invoice.reversed_entry_id.name or ''
+                reference_date = invoice.reversed_entry_id.invoice_date or ''
+            
+            # Withholding tax - calculate from tax lines
+            wht_rate = 0
+            wht_amount = 0
+            for line in invoice.invoice_line_ids.filtered(lambda l: l.display_type == 'product'):
+                for tax in line.tax_ids:
+                    # Withholding taxes typically have negative amounts
+                    if tax.amount < 0:
+                        wht_rate = abs(tax.amount)
+                        # Calculate WHT amount for this line
+                        line_subtotal = line.quantity * line.price_unit * (1 - (line.discount or 0) / 100)
+                        wht_amount += abs(line_subtotal * tax.amount / 100)
+            
+            # Payment terms
+            payment_terms = invoice.invoice_payment_term_id.name if invoice.invoice_payment_term_id else ''
+            due_date = invoice.invoice_date_due or ''
+            
             # Write one row per line item
             line_num = 1
             product_lines = invoice.invoice_line_ids.filtered(lambda l: l.display_type == 'product')
             
+            if not product_lines:
+                skipped_invoices.append((invoice.name, invoice.partner_id.name, 'No product lines'))
+                continue
+            
             for line in product_lines:
                 # Line-specific values
-                item_name = line.product_id.name or line.name or ''
-                description = line.name or ''
+                item_name = line.product_id.name if line.product_id else (line.name or '')
+                description = line.name or item_name
                 quantity = line.quantity
-                unit = line.product_uom_id.name[:2].upper() if line.product_uom_id else 'EA'
-                unit_name = line.product_uom_id.name if line.product_uom_id else 'Each'
+                
+                # Get UoM with e-Tax codes
+                if line.product_uom_id:
+                    unit = line.product_uom_id.get_etax_code()
+                    unit_name = line.product_uom_id.get_etax_name_th()
+                else:
+                    unit = 'C62'
+                    unit_name = 'หน่วย'
+                
                 unit_price = line.price_unit
-                line_discount = line.discount * line.quantity * line.price_unit / 100 if line.discount else 0
+                
+                # Calculate line discount
+                line_discount = 0
+                if line.discount:
+                    line_discount = (line.discount / 100) * line.quantity * line.price_unit
+                
                 line_amount = line.price_subtotal
                 
                 # Write all columns
@@ -390,7 +467,7 @@ class EtaxExcelExportWizard(models.TransientModel):
                 worksheet.write(row, col, doc_type, text_format); col += 1
                 worksheet.write(row, col, invoice.name or '', text_format); col += 1
                 worksheet.write(row, col, invoice.invoice_date, date_format); col += 1
-                worksheet.write(row, col, 'Sale', text_format); col += 1
+                worksheet.write(row, col, purpose, text_format); col += 1
                 worksheet.write(row, col, company.name or '', text_format); col += 1
                 worksheet.write(row, col, seller_tax_id, text_format); col += 1
                 worksheet.write(row, col, seller_branch, text_format); col += 1
@@ -426,18 +503,98 @@ class EtaxExcelExportWizard(models.TransientModel):
                 worksheet.write(row, col, total_discount, money_format); col += 1
                 worksheet.write(row, col, vat_rate, int_format); col += 1
                 worksheet.write(row, col, vat_amount, money_format); col += 1
-                worksheet.write(row, col, grand_total, money_format)
+                worksheet.write(row, col, grand_total, money_format); col += 1
+                worksheet.write(row, col, reference_number, text_format); col += 1
+                if reference_date:
+                    worksheet.write(row, col, reference_date, date_format)
+                else:
+                    worksheet.write(row, col, '', text_format)
+                col += 1
+                worksheet.write(row, col, wht_rate, money_format); col += 1
+                worksheet.write(row, col, wht_amount, money_format); col += 1
+                worksheet.write(row, col, payment_terms, text_format); col += 1
+                if due_date:
+                    worksheet.write(row, col, due_date, date_format)
+                else:
+                    worksheet.write(row, col, '', text_format)
                 
                 row += 1
                 line_num += 1
         
         workbook.close()
         
+        # Log skipped invoices
+        if skipped_invoices:
+            warning_msg = _('Warning: Skipped %d invoice(s):\n') % len(skipped_invoices)
+            for inv_name, partner_name, reason in skipped_invoices[:10]:
+                warning_msg += f'  - {inv_name} ({partner_name}): {reason}\n'
+            if len(skipped_invoices) > 10:
+                warning_msg += f'  ... and {len(skipped_invoices) - 10} more'
+            _logger.warning(warning_msg)
+        
         # Generate filename
         timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-        filename = f'etax_invoices_{timestamp}.xlsx'
+        filename = f'etax_export_{timestamp}.xlsx'
         
         return output.getvalue(), filename
+    
+    def _clean_tax_id(self, tax_id):
+        """Clean tax ID to 13 digits without hyphens"""
+        if not tax_id:
+            return ''
+        # Remove TH prefix if present
+        if tax_id.upper().startswith('TH'):
+            tax_id = tax_id[2:]
+        # Remove all non-digit characters
+        cleaned = re.sub(r'[^0-9]', '', tax_id)
+        return cleaned
+    
+    def _clean_branch_id(self, branch_id):
+        """Clean branch ID to 5 digits"""
+        if not branch_id:
+            return '00000'
+        # Remove all non-digit characters
+        cleaned = re.sub(r'[^0-9]', '', branch_id)
+        # Pad with zeros if needed
+        return cleaned.zfill(5)[:5]
+    
+    def _validate_invoice_for_export(self, invoice):
+        """Validate invoice has required fields for e-Tax export"""
+        # Basic validation
+        if not invoice.name:
+            return False
+        if not invoice.invoice_date:
+            return False
+        
+        # Seller validation
+        company = invoice.company_id
+        seller_tax_id = self._clean_tax_id(company.etax_tax_id or company.vat or '')
+        if not seller_tax_id or len(seller_tax_id) != 13:
+            _logger.warning(f'Invoice {invoice.name}: Invalid seller tax ID')
+            return False
+        
+        # Buyer validation
+        partner = invoice.partner_id
+        buyer_tax_id = self._clean_tax_id(partner.etax_effective_tax_id or partner.vat or '')
+        if not buyer_tax_id or len(buyer_tax_id) != 13:
+            _logger.warning(f'Invoice {invoice.name}: Invalid buyer tax ID for {partner.name}')
+            return False
+        
+        # Line items validation
+        product_lines = invoice.invoice_line_ids.filtered(lambda l: l.display_type == 'product')
+        if not product_lines:
+            return False
+        
+        # Reference document validation for Credit/Debit Notes
+        if invoice.move_type in ('out_refund',):
+            if not invoice.etax_reference_number or not invoice.etax_reference_date:
+                _logger.warning(
+                    f'Invoice {invoice.name}: Credit/Debit note missing reference document'
+                )
+                # Still export but log warning
+        
+        return True
+
     
     def _format_address(self, partner):
         """Format partner address as a single string, including Thai address fields"""

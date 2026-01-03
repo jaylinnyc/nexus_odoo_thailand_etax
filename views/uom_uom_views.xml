@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- Add e-Tax fields to UoM form -->
+    <record id="view_uom_form_etax" model="ir.ui.view">
+        <field name="name">uom.uom.form.etax</field>
+        <field name="model">uom.uom</field>
+        <field name="inherit_id" ref="uom.view_uom_form"/>
+        <field name="arch" type="xml">
+            
+            <xpath expr="//group[@name='main']" position="after">
+                <group string="Thailand e-Tax Configuration" name="etax">
+                    <field name="etax_code" placeholder="e.g., C62, EA, KGM, MTR"/>
+                    <field name="etax_name_th" placeholder="e.g., หน่วย, ชิ้น, กิโลกรัม"/>
+                </group>
+                
+                <div class="alert alert-info" role="alert">
+                    <h4>UN/CEFACT Unit Codes for e-Tax</h4>
+                    <p>Common codes for Thailand e-Tax:</p>
+                    <ul>
+                        <li><strong>C62</strong> - Unit (หน่วย)</li>
+                        <li><strong>EA</strong> - Each/Piece (ชิ้น)</li>
+                        <li><strong>BX</strong> - Box (กล่อง)</li>
+                        <li><strong>SET</strong> - Set (ชุด)</li>
+                        <li><strong>KGM</strong> - Kilogram (กิโลกรัม)</li>
+                        <li><strong>GRM</strong> - Gram (กรัม)</li>
+                        <li><strong>MTR</strong> - Meter (เมตร)</li>
+                        <li><strong>LTR</strong> - Liter (ลิตร)</li>
+                        <li><strong>HUR</strong> - Hour (ชั่วโมง)</li>
+                        <li><strong>DAY</strong> - Day (วัน)</li>
+                    </ul>
+                    <p>If not specified, the system will attempt to auto-map based on the UoM name.</p>
+                </div>
+            </xpath>
+            
+        </field>
+    </record>
+    
+    <!-- Add e-Tax fields to UoM tree view -->
+    <record id="view_uom_tree_etax" model="ir.ui.view">
+        <field name="name">uom.uom.tree.etax</field>
+        <field name="model">uom.uom</field>
+        <field name="inherit_id" ref="uom.view_uom_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="etax_code" optional="show"/>
+                <field name="etax_name_th" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+    
+</odoo>

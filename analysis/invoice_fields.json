@@ -1,0 +1,1866 @@
+[
+  {
+    "id": 4224,
+    "name": "abnormal_amount_warning",
+    "field_description": "Abnormal Amount Warning",
+    "ttype": "text",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4225,
+    "name": "abnormal_date_warning",
+    "field_description": "Abnormal Date Warning",
+    "ttype": "text",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4091,
+    "name": "access_token",
+    "field_description": "Security Token",
+    "ttype": "char",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4090,
+    "name": "access_url",
+    "field_description": "Portal Access URL",
+    "ttype": "char",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4092,
+    "name": "access_warning",
+    "field_description": "Access warning",
+    "ttype": "text",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4132,
+    "name": "account_fiscal_country_group_codes",
+    "field_description": "Account Fiscal Country Group Codes",
+    "ttype": "json",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 26024,
+    "name": "activity_calendar_event_id",
+    "field_description": "Next Activity Calendar Event",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4073,
+    "name": "activity_date_deadline",
+    "field_description": "Next Activity Deadline",
+    "ttype": "date",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4076,
+    "name": "activity_exception_decoration",
+    "field_description": "Activity Exception Decoration",
+    "ttype": "selection",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4077,
+    "name": "activity_exception_icon",
+    "field_description": "Icon",
+    "ttype": "char",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4068,
+    "name": "activity_ids",
+    "field_description": "Activities",
+    "ttype": "one2many",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4069,
+    "name": "activity_state",
+    "field_description": "Activity State",
+    "ttype": "selection",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4075,
+    "name": "activity_summary",
+    "field_description": "Next Activity Summary",
+    "ttype": "char",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4072,
+    "name": "activity_type_icon",
+    "field_description": "Activity Type Icon",
+    "ttype": "char",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4071,
+    "name": "activity_type_id",
+    "field_description": "Next Activity Type",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4070,
+    "name": "activity_user_id",
+    "field_description": "Responsible User",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4115,
+    "name": "adjusting_entries_count",
+    "field_description": "Adjusting Entries Count",
+    "ttype": "integer",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4114,
+    "name": "adjusting_entries_move_ids",
+    "field_description": "Created Adjusting Entries",
+    "ttype": "many2many",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4112,
+    "name": "adjusting_entry_origin_label",
+    "field_description": "Adjusting Entry Origin Label",
+    "ttype": "char",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4111,
+    "name": "adjusting_entry_origin_move_ids",
+    "field_description": "Adjusting Entry Origin Moves",
+    "ttype": "many2many",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4113,
+    "name": "adjusting_entry_origin_moves_count",
+    "field_description": "Adjusting Entry Origin Moves Count",
+    "ttype": "integer",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4226,
+    "name": "alerts",
+    "field_description": "Alerts",
+    "ttype": "json",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4119,
+    "name": "always_tax_exigible",
+    "field_description": "Always Tax Exigible",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 6207,
+    "name": "amount_paid",
+    "field_description": "Amount paid",
+    "ttype": "monetary",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4175,
+    "name": "amount_residual",
+    "field_description": "Amount Due",
+    "ttype": "monetary",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4181,
+    "name": "amount_residual_signed",
+    "field_description": "Amount Due Signed",
+    "ttype": "monetary",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4173,
+    "name": "amount_tax",
+    "field_description": "Tax",
+    "ttype": "monetary",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4178,
+    "name": "amount_tax_signed",
+    "field_description": "Tax Signed",
+    "ttype": "monetary",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4174,
+    "name": "amount_total",
+    "field_description": "Total",
+    "ttype": "monetary",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4180,
+    "name": "amount_total_in_currency_signed",
+    "field_description": "Total in Currency Signed",
+    "ttype": "monetary",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4179,
+    "name": "amount_total_signed",
+    "field_description": "Total Signed",
+    "ttype": "monetary",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4185,
+    "name": "amount_total_words",
+    "field_description": "Amount total in words",
+    "ttype": "char",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4172,
+    "name": "amount_untaxed",
+    "field_description": "Untaxed Amount",
+    "ttype": "monetary",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4177,
+    "name": "amount_untaxed_in_currency_signed",
+    "field_description": "Untaxed Amount Signed Currency",
+    "ttype": "monetary",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4176,
+    "name": "amount_untaxed_signed",
+    "field_description": "Untaxed Amount Signed",
+    "ttype": "monetary",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 6958,
+    "name": "asset_depreciated_value",
+    "field_description": "Cumulative Depreciation",
+    "ttype": "monetary",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 6961,
+    "name": "asset_depreciation_beginning_date",
+    "field_description": "Date of the beginning of the depreciation",
+    "ttype": "date",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 6956,
+    "name": "asset_id",
+    "field_description": "Asset",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 6964,
+    "name": "asset_id_display_name",
+    "field_description": "Asset Id Display Name",
+    "ttype": "char",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 6963,
+    "name": "asset_ids",
+    "field_description": "Assets",
+    "ttype": "one2many",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 6967,
+    "name": "asset_move_type",
+    "field_description": "Asset Move Type",
+    "ttype": "selection",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 6960,
+    "name": "asset_number_days",
+    "field_description": "Number of days",
+    "ttype": "integer",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 6957,
+    "name": "asset_remaining_value",
+    "field_description": "Depreciable Value",
+    "ttype": "monetary",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 6959,
+    "name": "asset_value_change",
+    "field_description": "Asset Value Change",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4134,
+    "name": "attachment_ids",
+    "field_description": "Attachments",
+    "ttype": "one2many",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4135,
+    "name": "audit_trail_message_ids",
+    "field_description": "Audit Trail Messages",
+    "ttype": "one2many",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 6205,
+    "name": "authorized_transaction_ids",
+    "field_description": "Authorized Transactions",
+    "ttype": "many2many",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4120,
+    "name": "auto_post",
+    "field_description": "Auto-post",
+    "ttype": "selection",
+    "required": true,
+    "readonly": false
+  },
+  {
+    "id": 4122,
+    "name": "auto_post_origin_id",
+    "field_description": "First recurring entry",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4121,
+    "name": "auto_post_until",
+    "field_description": "Auto-post until",
+    "ttype": "date",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4210,
+    "name": "bank_partner_id",
+    "field_description": "Bank Partner",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 7262,
+    "name": "campaign_id",
+    "field_description": "Campaign",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4124,
+    "name": "checked",
+    "field_description": "Reviewed",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 6660,
+    "name": "closing_return_id",
+    "field_description": "Closing Return",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4155,
+    "name": "commercial_partner_id",
+    "field_description": "Commercial Entity",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4167,
+    "name": "company_currency_id",
+    "field_description": "Company Currency",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4102,
+    "name": "company_id",
+    "field_description": "Company",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4133,
+    "name": "company_price_include",
+    "field_description": "Default Sales Price Include",
+    "ttype": "selection",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 6965,
+    "name": "count_asset",
+    "field_description": "Count Asset",
+    "ttype": "integer",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4131,
+    "name": "country_code",
+    "field_description": "Country Code",
+    "ttype": "char",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4232,
+    "name": "create_date",
+    "field_description": "Created on",
+    "ttype": "datetime",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4231,
+    "name": "create_uid",
+    "field_description": "Created by",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4168,
+    "name": "currency_id",
+    "field_description": "Currency",
+    "ttype": "many2one",
+    "required": true,
+    "readonly": false
+  },
+  {
+    "id": 4096,
+    "name": "date",
+    "field_description": "Date",
+    "ttype": "date",
+    "required": true,
+    "readonly": false
+  },
+  {
+    "id": 6038,
+    "name": "deferred_entry_type",
+    "field_description": "Deferred Entry Type",
+    "ttype": "selection",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 6036,
+    "name": "deferred_move_ids",
+    "field_description": "Deferred Entries",
+    "ttype": "many2many",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 6037,
+    "name": "deferred_original_move_ids",
+    "field_description": "Original Invoices",
+    "ttype": "many2many",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4144,
+    "name": "delivery_date",
+    "field_description": "Delivery Date",
+    "ttype": "date",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 6962,
+    "name": "depreciation_value",
+    "field_description": "Depreciation",
+    "ttype": "monetary",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4171,
+    "name": "direction_sign",
+    "field_description": "Direction Sign",
+    "ttype": "integer",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4212,
+    "name": "display_inactive_currency_warning",
+    "field_description": "Display Inactive Currency Warning",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4161,
+    "name": "display_link_qr_code",
+    "field_description": "Display Link QR-code",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4065,
+    "name": "display_name",
+    "field_description": "Display Name",
+    "ttype": "char",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4160,
+    "name": "display_qr_code",
+    "field_description": "Display QR-code",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4229,
+    "name": "display_send_button",
+    "field_description": "Display Send Button",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 6966,
+    "name": "draft_asset_exists",
+    "field_description": "Draft Asset Exists",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4218,
+    "name": "duplicated_ref_ids",
+    "field_description": "Duplicated Ref",
+    "ttype": "many2many",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4105,
+    "name": "exchange_diff_partial_ids",
+    "field_description": "Related reconciliation",
+    "ttype": "one2many",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4169,
+    "name": "expected_currency_rate",
+    "field_description": "Expected Currency Rate",
+    "ttype": "float",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 10153,
+    "name": "expense_ids",
+    "field_description": "Expense",
+    "ttype": "one2many",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4158,
+    "name": "fiscal_position_id",
+    "field_description": "Fiscal Position",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 25221,
+    "name": "force_release_to_pay",
+    "field_description": "Force Status",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 7103,
+    "name": "generating_loan_line_id",
+    "field_description": "Generating Loan Line",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 12228,
+    "name": "has_documents",
+    "field_description": "Has Documents",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4082,
+    "name": "has_message",
+    "field_description": "Has Message",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4215,
+    "name": "has_reconciled_entries",
+    "field_description": "Has Reconciled Entries",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4123,
+    "name": "hide_post_button",
+    "field_description": "Hide Post Button",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4127,
+    "name": "highest_name",
+    "field_description": "Highest Name",
+    "ttype": "char",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4230,
+    "name": "highlight_send_button",
+    "field_description": "Highlight Send Button",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4064,
+    "name": "id",
+    "field_description": "ID",
+    "ttype": "integer",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4139,
+    "name": "inalterable_hash",
+    "field_description": "Inalterability Hash",
+    "ttype": "char",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4203,
+    "name": "incoterm_location",
+    "field_description": "Incoterm Location",
+    "ttype": "char",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4204,
+    "name": "invoice_cash_rounding_id",
+    "field_description": "Cash Rounding Method",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4170,
+    "name": "invoice_currency_rate",
+    "field_description": "Currency Rate",
+    "ttype": "float",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4142,
+    "name": "invoice_date",
+    "field_description": "Invoice/Bill Date",
+    "ttype": "date",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4143,
+    "name": "invoice_date_due",
+    "field_description": "Due Date",
+    "ttype": "date",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4209,
+    "name": "invoice_filter_type_domain",
+    "field_description": "Invoice Filter Type Domain",
+    "ttype": "char",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4164,
+    "name": "invoice_has_outstanding",
+    "field_description": "Invoice Has Outstanding",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4202,
+    "name": "invoice_incoterm_id",
+    "field_description": "Incoterm",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4208,
+    "name": "invoice_incoterm_placeholder",
+    "field_description": "Invoice Incoterm Placeholder",
+    "ttype": "char",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4141,
+    "name": "invoice_line_ids",
+    "field_description": "Invoice lines",
+    "ttype": "one2many",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4201,
+    "name": "invoice_origin",
+    "field_description": "Origin",
+    "ttype": "char",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4163,
+    "name": "invoice_outstanding_credits_debits_widget",
+    "field_description": "Invoice Outstanding Credits Debits Widget",
+    "ttype": "binary",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4190,
+    "name": "invoice_partner_display_name",
+    "field_description": "Invoice Partner Display Name",
+    "ttype": "char",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4149,
+    "name": "invoice_payment_term_id",
+    "field_description": "Payment Terms",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4165,
+    "name": "invoice_payments_widget",
+    "field_description": "Invoice Payments Widget",
+    "ttype": "binary",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4207,
+    "name": "invoice_pdf_report_file",
+    "field_description": "PDF File",
+    "ttype": "binary",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4206,
+    "name": "invoice_pdf_report_id",
+    "field_description": "PDF Attachment",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4189,
+    "name": "invoice_source_email",
+    "field_description": "Source Email",
+    "ttype": "char",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4199,
+    "name": "invoice_user_id",
+    "field_description": "Salesperson",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4188,
+    "name": "invoice_vendor_bill_id",
+    "field_description": "Vendor Bill",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4197,
+    "name": "is_being_sent",
+    "field_description": "Is Being Sent",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 7105,
+    "name": "is_loan_payment_move",
+    "field_description": "Is Loan Payment Move",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4191,
+    "name": "is_manually_modified",
+    "field_description": "Is Manually Modified",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4196,
+    "name": "is_move_sent",
+    "field_description": "Is Move Sent",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 9025,
+    "name": "is_purchase_matched",
+    "field_description": "Is Purchase Matched",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4099,
+    "name": "is_storno",
+    "field_description": "Is Storno",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4101,
+    "name": "journal_group_id",
+    "field_description": "Ledger",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4100,
+    "name": "journal_id",
+    "field_description": "Journal",
+    "ttype": "many2one",
+    "required": true,
+    "readonly": false
+  },
+  {
+    "id": 4104,
+    "name": "journal_line_ids",
+    "field_description": "Journal Items (DEPRECATED)",
+    "ttype": "one2many",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 25308,
+    "name": "landed_costs_ids",
+    "field_description": "Landed Costs",
+    "ttype": "one2many",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 25309,
+    "name": "landed_costs_visible",
+    "field_description": "Landed Costs Visible",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4103,
+    "name": "line_ids",
+    "field_description": "Journal Items",
+    "ttype": "one2many",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 7104,
+    "name": "loan_id",
+    "field_description": "Loan",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4128,
+    "name": "made_sequence_gap",
+    "field_description": "Made Sequence Gap",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4107,
+    "name": "matched_payment_ids",
+    "field_description": "Matched Payments",
+    "ttype": "many2many",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 7264,
+    "name": "medium_id",
+    "field_description": "Medium",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4087,
+    "name": "message_attachment_count",
+    "field_description": "Attachment Count",
+    "ttype": "integer",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4079,
+    "name": "message_follower_ids",
+    "field_description": "Followers",
+    "ttype": "one2many",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4085,
+    "name": "message_has_error",
+    "field_description": "Message Delivery error",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4086,
+    "name": "message_has_error_counter",
+    "field_description": "Number of errors",
+    "ttype": "integer",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 9558,
+    "name": "message_has_sms_error",
+    "field_description": "SMS Delivery error",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4081,
+    "name": "message_ids",
+    "field_description": "Messages",
+    "ttype": "one2many",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4078,
+    "name": "message_is_follower",
+    "field_description": "Is Follower",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4089,
+    "name": "message_main_attachment_id",
+    "field_description": "Main Attachment",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4083,
+    "name": "message_needaction",
+    "field_description": "Action Needed",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4084,
+    "name": "message_needaction_counter",
+    "field_description": "Number of Actions",
+    "ttype": "integer",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4080,
+    "name": "message_partner_ids",
+    "field_description": "Followers (Partners)",
+    "ttype": "many2many",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4198,
+    "name": "move_sent_values",
+    "field_description": "Sent",
+    "ttype": "selection",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4098,
+    "name": "move_type",
+    "field_description": "Type",
+    "ttype": "selection",
+    "required": true,
+    "readonly": true
+  },
+  {
+    "id": 4074,
+    "name": "my_activity_date_deadline",
+    "field_description": "My Activity Deadline",
+    "ttype": "date",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4093,
+    "name": "name",
+    "field_description": "Number",
+    "ttype": "char",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4094,
+    "name": "name_placeholder",
+    "field_description": "Name Placeholder",
+    "ttype": "char",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4195,
+    "name": "narration",
+    "field_description": "Terms and Conditions",
+    "ttype": "html",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 10154,
+    "name": "nb_expenses",
+    "field_description": "Number of Expenses",
+    "ttype": "integer",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4219,
+    "name": "need_cancel_request",
+    "field_description": "Need Cancel Request",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4150,
+    "name": "needed_terms",
+    "field_description": "Needed Terms",
+    "ttype": "binary",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4151,
+    "name": "needed_terms_dirty",
+    "field_description": "Needed Terms Dirty",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4228,
+    "name": "next_payment_date",
+    "field_description": "Next Payment Date",
+    "ttype": "date",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4136,
+    "name": "no_followup",
+    "field_description": "No Follow-Up",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4106,
+    "name": "origin_payment_id",
+    "field_description": "Payment",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4157,
+    "name": "partner_bank_id",
+    "field_description": "Recipient Bank",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4217,
+    "name": "partner_credit_warning",
+    "field_description": "Partner Credit Warning",
+    "ttype": "text",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4154,
+    "name": "partner_id",
+    "field_description": "Partner",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4156,
+    "name": "partner_shipping_id",
+    "field_description": "Delivery Address",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4108,
+    "name": "payment_count",
+    "field_description": "Payment Count",
+    "ttype": "integer",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4235,
+    "name": "payment_ids",
+    "field_description": "Payments",
+    "ttype": "one2many",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4159,
+    "name": "payment_reference",
+    "field_description": "Payment Reference",
+    "ttype": "char",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4183,
+    "name": "payment_state",
+    "field_description": "Payment Status",
+    "ttype": "selection",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 6035,
+    "name": "payment_state_before_switch",
+    "field_description": "Payment State Before Switch",
+    "ttype": "char",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4221,
+    "name": "payment_term_details",
+    "field_description": "Payment Term Details",
+    "ttype": "binary",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4125,
+    "name": "posted_before",
+    "field_description": "Posted Before",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4166,
+    "name": "preferred_payment_method_line_id",
+    "field_description": "Preferred Payment Method Line",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 9022,
+    "name": "purchase_id",
+    "field_description": "Purchase Order",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 9023,
+    "name": "purchase_order_count",
+    "field_description": "Purchase Order Count",
+    "ttype": "integer",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 9024,
+    "name": "purchase_order_name",
+    "field_description": "Purchase Order Name",
+    "ttype": "char",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 9021,
+    "name": "purchase_vendor_bill_id",
+    "field_description": "Auto-complete",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 9026,
+    "name": "purchase_warning_text",
+    "field_description": "Purchase Warning",
+    "ttype": "text",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4162,
+    "name": "qr_code_method",
+    "field_description": "Payment QR-code",
+    "ttype": "selection",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4192,
+    "name": "quick_edit_mode",
+    "field_description": "Quick Edit Mode",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4193,
+    "name": "quick_edit_total_amount",
+    "field_description": "Total (Tax inc.)",
+    "ttype": "monetary",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4194,
+    "name": "quick_encoding_vals",
+    "field_description": "Quick Encoding Vals",
+    "ttype": "json",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 26025,
+    "name": "reconciled_payment_ids",
+    "field_description": "Reconciled Payments",
+    "ttype": "many2many",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4095,
+    "name": "ref",
+    "field_description": "Reference",
+    "ttype": "char",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 25219,
+    "name": "release_to_pay",
+    "field_description": "Release To Pay",
+    "ttype": "selection",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 25220,
+    "name": "release_to_pay_manual",
+    "field_description": "Should Be Paid",
+    "ttype": "selection",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4137,
+    "name": "restrict_mode_hash_table",
+    "field_description": "Secure Posted Entries with Hash",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4187,
+    "name": "reversal_move_ids",
+    "field_description": "Reversal Move",
+    "ttype": "one2many",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4186,
+    "name": "reversed_entry_id",
+    "field_description": "Reversal of",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 7266,
+    "name": "sale_order_count",
+    "field_description": "Sale Order Count",
+    "ttype": "integer",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 7267,
+    "name": "sale_warning_text",
+    "field_description": "Sale Warning",
+    "ttype": "text",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4138,
+    "name": "secure_sequence_number",
+    "field_description": "Inalterability No Gap Sequence #",
+    "ttype": "integer",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4140,
+    "name": "secured",
+    "field_description": "Secured",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4205,
+    "name": "sending_data",
+    "field_description": "Sending Data",
+    "ttype": "json",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4067,
+    "name": "sequence_number",
+    "field_description": "Sequence Number",
+    "ttype": "integer",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4066,
+    "name": "sequence_prefix",
+    "field_description": "Sequence Prefix",
+    "ttype": "char",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4145,
+    "name": "show_delivery_date",
+    "field_description": "Show Delivery Date",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4223,
+    "name": "show_discount_details",
+    "field_description": "Show Discount Details",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4153,
+    "name": "show_journal",
+    "field_description": "Show Journal",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4129,
+    "name": "show_name_warning",
+    "field_description": "Show Name Warning",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4222,
+    "name": "show_payment_term_details",
+    "field_description": "Show Payment Term Details",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4216,
+    "name": "show_reset_to_draft_button",
+    "field_description": "Show Reset To Draft Button",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 6040,
+    "name": "show_signature_area",
+    "field_description": "Show Signature Area",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4147,
+    "name": "show_taxable_supply_date",
+    "field_description": "Show Taxable Supply Date",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4220,
+    "name": "show_update_fpos",
+    "field_description": "Has Fiscal Position Changed",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 6041,
+    "name": "signature",
+    "field_description": "Signature",
+    "ttype": "binary",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 6039,
+    "name": "signing_user",
+    "field_description": "Signer",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 7263,
+    "name": "source_id",
+    "field_description": "Source",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4097,
+    "name": "state",
+    "field_description": "Status",
+    "ttype": "selection",
+    "required": true,
+    "readonly": true
+  },
+  {
+    "id": 4110,
+    "name": "statement_id",
+    "field_description": "Statement",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4109,
+    "name": "statement_line_id",
+    "field_description": "Statement Line",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4236,
+    "name": "statement_line_ids",
+    "field_description": "Statements",
+    "ttype": "one2many",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4184,
+    "name": "status_in_payment",
+    "field_description": "Status In Payment",
+    "ttype": "selection",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 8808,
+    "name": "stock_move_ids",
+    "field_description": "Stock Move",
+    "ttype": "one2many",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4126,
+    "name": "suitable_journal_ids",
+    "field_description": "Suitable Journal",
+    "ttype": "many2many",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 12227,
+    "name": "suspense_statement_line_id",
+    "field_description": "Request document from a bank statement line",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4152,
+    "name": "tax_calculation_rounding_method",
+    "field_description": "Tax calculation rounding method",
+    "ttype": "selection",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4118,
+    "name": "tax_cash_basis_created_move_ids",
+    "field_description": "Cash Basis Entries",
+    "ttype": "one2many",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4117,
+    "name": "tax_cash_basis_origin_move_id",
+    "field_description": "Cash Basis Origin",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4116,
+    "name": "tax_cash_basis_rec_id",
+    "field_description": "Tax Cash Basis Entry of",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4214,
+    "name": "tax_country_code",
+    "field_description": "Tax Country Code",
+    "ttype": "char",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4213,
+    "name": "tax_country_id",
+    "field_description": "Tax Country",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4211,
+    "name": "tax_lock_date_message",
+    "field_description": "Tax Lock Date Message",
+    "ttype": "char",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4182,
+    "name": "tax_totals",
+    "field_description": "Invoice Totals",
+    "ttype": "binary",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4146,
+    "name": "taxable_supply_date",
+    "field_description": "Taxable Supply Date",
+    "ttype": "date",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4148,
+    "name": "taxable_supply_date_placeholder",
+    "field_description": "Taxable Supply Date Placeholder",
+    "ttype": "char",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4227,
+    "name": "taxes_legal_notes",
+    "field_description": "Taxes Legal Notes",
+    "ttype": "html",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 7265,
+    "name": "team_id",
+    "field_description": "Sales Team",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 6206,
+    "name": "transaction_count",
+    "field_description": "Transaction Count",
+    "ttype": "integer",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 6204,
+    "name": "transaction_ids",
+    "field_description": "Transactions",
+    "ttype": "many2many",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4130,
+    "name": "type_name",
+    "field_description": "Type Name",
+    "ttype": "char",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 6186,
+    "name": "ubl_cii_xml_file",
+    "field_description": "UBL/CII File",
+    "ttype": "binary",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 6187,
+    "name": "ubl_cii_xml_filename",
+    "field_description": "UBL/CII Filename",
+    "ttype": "char",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 6185,
+    "name": "ubl_cii_xml_id",
+    "field_description": "Attachment",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4200,
+    "name": "user_id",
+    "field_description": "User",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4088,
+    "name": "website_message_ids",
+    "field_description": "Website Messages",
+    "ttype": "one2many",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 4234,
+    "name": "write_date",
+    "field_description": "Last Updated on",
+    "ttype": "datetime",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 4233,
+    "name": "write_uid",
+    "field_description": "Last Updated by",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 24939,
+    "name": "x_studio_company_reference",
+    "field_description": "Company Reference",
+    "ttype": "char",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 25765,
+    "name": "x_studio_received_taxinvoice_1",
+    "field_description": "Received TaxInvoice",
+    "ttype": "boolean",
+    "required": false,
+    "readonly": false
+  },
+  {
+    "id": 24976,
+    "name": "x_studio_related_field_9bp_1j68futse",
+    "field_description": "Quantity",
+    "ttype": "float",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 24973,
+    "name": "x_studio_related_field_ae_1j68ftg1q",
+    "field_description": "Product",
+    "ttype": "many2one",
+    "required": false,
+    "readonly": true
+  },
+  {
+    "id": 26113,
+    "name": "x_studio_taxinvoice_date",
+    "field_description": "TaxInvoice Date",
+    "ttype": "date",
+    "required": false,
+    "readonly": false
+  }
+]

@@ -1,0 +1,101 @@
+[
+  {
+    "id": 5807,
+    "name": "INV/2025/00128",
+    "move_type": "out_invoice",
+    "invoice_date": "2025-12-25",
+    "partner_id": [
+      25,
+      "Siam GS Battery  Co.,Ltd."
+    ],
+    "amount_untaxed": 6249214.01,
+    "amount_tax": 437444.98,
+    "amount_total": 6686658.99,
+    "ref": false,
+    "invoice_origin": false,
+    "reversed_entry_id": false,
+    "invoice_payment_term_id": false,
+    "invoice_date_due": "2026-01-04"
+  },
+  {
+    "id": 5806,
+    "name": "INV/2025/00127",
+    "move_type": "out_invoice",
+    "invoice_date": "2025-12-24",
+    "partner_id": [
+      33,
+      "\u0e1a\u0e23\u0e34\u0e29\u0e31\u0e17 \u0e40\u0e1a\u0e2d\u0e23\u0e4c\u0e01\u0e42\u0e0b\u0e48 \u0e40\u0e21\u0e15\u0e31\u0e25\u0e2a\u0e4c \u0e08\u0e33\u0e01\u0e31\u0e14  Bergsoe Metals Co.,Ltd"
+    ],
+    "amount_untaxed": 1860707.8,
+    "amount_tax": 130249.55,
+    "amount_total": 1990957.35,
+    "ref": false,
+    "invoice_origin": false,
+    "reversed_entry_id": false,
+    "invoice_payment_term_id": [
+      1,
+      "Immediate Payment"
+    ],
+    "invoice_date_due": "2025-12-24"
+  },
+  {
+    "id": 5752,
+    "name": "INV/2025/00126",
+    "move_type": "out_invoice",
+    "invoice_date": "2025-12-24",
+    "partner_id": [
+      25,
+      "Siam GS Battery  Co.,Ltd."
+    ],
+    "amount_untaxed": 4948283.55,
+    "amount_tax": 346379.85,
+    "amount_total": 5294663.4,
+    "ref": false,
+    "invoice_origin": false,
+    "reversed_entry_id": false,
+    "invoice_payment_term_id": false,
+    "invoice_date_due": "2026-01-23"
+  },
+  {
+    "id": 5751,
+    "name": "INV/2025/00125",
+    "move_type": "out_invoice",
+    "invoice_date": "2025-12-23",
+    "partner_id": [
+      33,
+      "\u0e1a\u0e23\u0e34\u0e29\u0e31\u0e17 \u0e40\u0e1a\u0e2d\u0e23\u0e4c\u0e01\u0e42\u0e0b\u0e48 \u0e40\u0e21\u0e15\u0e31\u0e25\u0e2a\u0e4c \u0e08\u0e33\u0e01\u0e31\u0e14  Bergsoe Metals Co.,Ltd"
+    ],
+    "amount_untaxed": 2825403.2,
+    "amount_tax": 197778.23,
+    "amount_total": 3023181.43,
+    "ref": false,
+    "invoice_origin": false,
+    "reversed_entry_id": false,
+    "invoice_payment_term_id": [
+      1,
+      "Immediate Payment"
+    ],
+    "invoice_date_due": "2025-12-23"
+  },
+  {
+    "id": 5729,
+    "name": "INV/2025/00124",
+    "move_type": "out_invoice",
+    "invoice_date": "2025-12-23",
+    "partner_id": [
+      33,
+      "\u0e1a\u0e23\u0e34\u0e29\u0e31\u0e17 \u0e40\u0e1a\u0e2d\u0e23\u0e4c\u0e01\u0e42\u0e0b\u0e48 \u0e40\u0e21\u0e15\u0e31\u0e25\u0e2a\u0e4c \u0e08\u0e33\u0e01\u0e31\u0e14  Bergsoe Metals Co.,Ltd"
+    ],
+    "amount_untaxed": 5032576.8,
+    "amount_tax": 352280.38,
+    "amount_total": 5384857.18,
+    "ref": false,
+    "invoice_origin": false,
+    "reversed_entry_id": false,
+    "invoice_payment_term_id": [
+      1,
+      "Immediate Payment"
+    ],
+    "invoice_date_due": "2025-12-23"
+  }
+]

@@ -1,0 +1,171 @@
+{
+  "vat_taxes": [],
+  "wht_taxes": [],
+  "other_taxes": [
+    {
+      "id": 5,
+      "name": "7%",
+      "amount": 7.0,
+      "type_tax_use": "purchase",
+      "tax_group_id": [
+        7,
+        "VAT 7%"
+      ],
+      "description": "<div>Input VAT 7%</div>"
+    },
+    {
+      "id": 23,
+      "name": "7%-Include",
+      "amount": 7.0,
+      "type_tax_use": "purchase",
+      "tax_group_id": [
+        7,
+        "VAT 7%"
+      ],
+      "description": "<div>Input VAT 7%</div>"
+    },
+    {
+      "id": 6,
+      "name": "7%",
+      "amount": 7.0,
+      "type_tax_use": "sale",
+      "tax_group_id": [
+        7,
+        "VAT 7%"
+      ],
+      "description": "<div>Output VAT 7%</div>"
+    },
+    {
+      "id": 11,
+      "name": "1% WH C T",
+      "amount": -1.0,
+      "type_tax_use": "purchase",
+      "tax_group_id": [
+        3,
+        "TAX 1%"
+      ],
+      "description": "<div>Company Withholding Tax 1% (Transportation)</div>"
+    },
+    {
+      "id": 12,
+      "name": "2% WH C A",
+      "amount": -2.0,
+      "type_tax_use": "purchase",
+      "tax_group_id": [
+        4,
+        "TAX 2%"
+      ],
+      "description": "<div>Company Withholding Tax 2% (Advertising)</div>"
+    },
+    {
+      "id": 13,
+      "name": "3% WH C S",
+      "amount": -3.0,
+      "type_tax_use": "purchase",
+      "tax_group_id": [
+        5,
+        "TAX 3%"
+      ],
+      "description": "<div>Company Withholding Tax 3% (Service)</div>"
+    },
+    {
+      "id": 14,
+      "name": "5% WH C R",
+      "amount": -5.0,
+      "type_tax_use": "purchase",
+      "tax_group_id": [
+        6,
+        "TAX 5%"
+      ],
+      "description": "<div>Company Withholding Tax 5% (Rental)</div>"
+    },
+    {
+      "id": 15,
+      "name": "1% WH P T",
+      "amount": -1.0,
+      "type_tax_use": "purchase",
+      "tax_group_id": [
+        3,
+        "TAX 1%"
+      ],
+      "description": "<div>Personal Withholding Tax 1% (Transportation)</div>"
+    },
+    {
+      "id": 16,
+      "name": "2% WH P A",
+      "amount": -2.0,
+      "type_tax_use": "purchase",
+      "tax_group_id": [
+        4,
+        "TAX 2%"
+      ],
+      "description": "<div>Personal Withholding Tax 2% (Advertising)</div>"
+    },
+    {
+      "id": 17,
+      "name": "3% WH P S",
+      "amount": -3.0,
+      "type_tax_use": "purchase",
+      "tax_group_id": [
+        5,
+        "TAX 3%"
+      ],
+      "description": "<div>Personal Withholding Tax 3% (Service)</div>"
+    },
+    {
+      "id": 18,
+      "name": "5% WH P R",
+      "amount": -5.0,
+      "type_tax_use": "purchase",
+      "tax_group_id": [
+        6,
+        "TAX 5%"
+      ],
+      "description": "<div>Personal Withholding Tax 5% (Rental)</div>"
+    },
+    {
+      "id": 19,
+      "name": "1% WH T",
+      "amount": -1.0,
+      "type_tax_use": "sale",
+      "tax_group_id": [
+        3,
+        "TAX 1%"
+      ],
+      "description": "<div>Withholding Income Tax 1% (Transportation)</div>"
+    },
+    {
+      "id": 20,
+      "name": "2% WH A",
+      "amount": -2.0,
+      "type_tax_use": "sale",
+      "tax_group_id": [
+        4,
+        "TAX 2%"
+      ],
+      "description": "<div>Withholding Income Tax 2% (Advertising)</div>"
+    },
+    {
+      "id": 21,
+      "name": "3% WH S",
+      "amount": -3.0,
+      "type_tax_use": "sale",
+      "tax_group_id": [
+        5,
+        "TAX 3%"
+      ],
+      "description": "<div>Withholding Income Tax 3% (Service)</div>"
+    },
+    {
+      "id": 22,
+      "name": "5% WH R",
+      "amount": -5.0,
+      "type_tax_use": "sale",
+      "tax_group_id": [
+        6,
+        "TAX 5%"
+      ],
+      "description": "<div>Withholding Income Tax 5% (Rental)</div>"
+    }
+  ]
+}
