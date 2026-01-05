@@ -344,7 +344,7 @@ class EtaxExcelExportWizard(models.TransientModel):
             
             # Get seller (company) info
             company = invoice.company_id
-            seller_tax_id = self._clean_tax_id(company.etax_tax_id or company.vat or '')
+            seller_tax_id = self._clean_tax_id(company.vat or '')
             seller_branch = self._clean_branch_id(company.etax_branch_id or '00000')
             
             # Build seller address parts
@@ -568,7 +568,7 @@ class EtaxExcelExportWizard(models.TransientModel):
         
         # Seller validation
         company = invoice.company_id
-        seller_tax_id = self._clean_tax_id(company.etax_tax_id or company.vat or '')
+        seller_tax_id = self._clean_tax_id(company.vat or '')
         if not seller_tax_id or len(seller_tax_id) != 13:
             _logger.warning(f'Invoice {invoice.name}: Invalid seller tax ID')
             return False

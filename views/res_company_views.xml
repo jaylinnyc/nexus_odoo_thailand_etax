@@ -10,7 +10,10 @@
                 <page string="e-Tax Thailand" name="etax_thailand">
                     <group>
                         <group string="Tax Registration">
-                            <field name="etax_tax_id" placeholder="1234567890123"/>
+                            <label for="vat" string="Tax ID (13 digits)"/>
+                            <div class="o_row">
+                                <field name="vat" placeholder="1234567890123" class="oe_inline"/>
+                            </div>
                             <field name="etax_branch_id" placeholder="00000"/>
                         </group>
                         <group string="Thai Address Details">

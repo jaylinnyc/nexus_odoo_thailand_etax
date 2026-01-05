@@ -9,11 +9,7 @@ class ResCompany(models.Model):
     _inherit = 'res.company'
     
     # Thai Tax Registration
-    etax_tax_id = fields.Char(
-        string='Tax ID',
-        size=13,
-        help='Thai Tax Identification Number (13 digits)',
-    )
+    # Note: Use standard 'vat' field for Tax ID
     
     etax_branch_id = fields.Char(
         string='Branch ID',
@@ -60,14 +56,18 @@ class ResCompany(models.Model):
         help='Province name',
     )
     
-    @api.constrains('etax_tax_id')
-    def _check_etax_tax_id(self):
+    @api.constrains('vat')
+    def _check_vat_thai_format(self):
+        """Validate Thai Tax ID format (13 digits)"""
         for company in self:
-            if company.etax_tax_id:
+            if company.vat and company.country_id.code == 'TH':
                 # Remove any non-digit characters for validation
-                tax_id_digits = re.sub(r'[^0-9]', '', company.etax_tax_id)
+                tax_id_digits = re.sub(r'[^0-9]', '', company.vat)
+                # Remove country prefix if present
+                if tax_id_digits.startswith('66'):
+                    tax_id_digits = tax_id_digits[2:]
                 if len(tax_id_digits) != 13:
-                    raise ValidationError(_('Tax ID must be exactly 13 digits.'))
+                    raise ValidationError(_('Thai Tax ID must be exactly 13 digits.'))
     
     @api.constrains('etax_branch_id')
     def _check_etax_branch_id(self):

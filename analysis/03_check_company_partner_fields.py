@@ -17,7 +17,7 @@ def main():
     company_fields = client.get_fields('res.company')
     
     thai_address_fields = [
-        'etax_tax_id',
+        'vat',  # Standard Tax ID field
         'etax_branch_id',
         'etax_sub_district',
         'etax_district',
