@@ -46,8 +46,8 @@ class EtaxExcelExportWizard(models.TransientModel):
     
     include_exported = fields.Boolean(
         string='Include Previously Exported',
-        default=False,
-        help='Include invoices that have already been exported',
+        default=True,
+        help='Include invoices that have already been exported. Uncheck to only export new invoices.',
     )
     
     include_finalized = fields.Boolean(
