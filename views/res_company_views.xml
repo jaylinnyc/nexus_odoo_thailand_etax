@@ -8,25 +8,136 @@
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
                 <page string="e-Tax Thailand" name="etax_thailand">
-                    <group>
-                        <group string="Tax Registration">
+                    <!-- Tax Registration Section -->
+                    <group name="tax_registration" string="Company Tax Registration Information">
+                        <group>
                             <label for="vat" string="Tax ID (13 digits)"/>
                             <div class="o_row">
-                                <field name="vat" placeholder="1234567890123" class="oe_inline"/>
+                                <field name="vat" 
+                                       placeholder="1234567890123" 
+                                       class="oe_inline"
+                                       help="13-digit Thai Tax ID (required for e-Tax)"/>
                             </div>
-                            <field name="etax_branch_id" placeholder="00000"/>
                         </group>
-                        <group string="Thai Address Details">
-                            <field name="etax_building_name"/>
-                            <field name="etax_floor_number"/>
-                            <field name="etax_room_number"/>
-                            <field name="etax_moo"/>
-                            <field name="etax_soi"/>
-                            <field name="etax_sub_district"/>
-                            <field name="etax_district"/>
-                            <field name="etax_province"/>
+                        <group>
+                            <field name="etax_branch_id" 
+                                   placeholder="00000" 
+                                   help="5-digit branch code (00000 for head office)"/>
                         </group>
                     </group>
+                    
+                    <separator string="Company Thai Address Components"/>
+                    
+                    <!-- Core Address Section -->
+                    <group name="core_address" string="Building &amp; Location">
+                        <group string="Building Information">
+                            <field name="etax_building_number" 
+                                   placeholder="123 or 456/7"
+                                   help="House/building number (required for proper Thai address)"/>
+                            <field name="etax_building_name" 
+                                   placeholder="Silom Complex"
+                                   help="Name of building or complex (optional)"/>
+                            <field name="etax_floor_number" 
+                                   placeholder="15"
+                                   help="Floor number (optional)"/>
+                            <field name="etax_room_number" 
+                                   placeholder="1502"
+                                   help="Room/unit number (optional)"/>
+                        </group>
+                        <group string="Street Information">
+                            <field name="etax_village_name" 
+                                   placeholder="Grand Park Village"
+                                   help="Village or housing estate name (optional)"/>
+                            <field name="etax_moo" 
+                                   placeholder="5"
+                                   help="Village group number (หมู่ที่)"/>
+                            <field name="etax_soi" 
+                                   placeholder="Sukhumvit 21 (Asoke)"
+                                   help="Soi/lane/alley name"/>
+                            <field name="etax_street_name" 
+                                   placeholder="Sukhumvit Road"
+                                   help="Main street/road name"/>
+                        </group>
+                    </group>
+                    
+                    <!-- Administrative Division Section -->
+                    <group name="admin_divisions" string="Administrative Divisions">
+                        <group string="Sub-District (ตำบล/แขวง)">
+                            <label for="etax_sub_district" string="Sub-District Name"/>
+                            <div class="o_row">
+                                <field name="etax_sub_district" 
+                                       placeholder="Khlong Toei" 
+                                       class="oe_inline"
+                                       help="Tambon (rural) or Khwaeng (urban)"/>
+                                <field name="etax_sub_district_code" 
+                                       placeholder="100201" 
+                                       class="oe_inline" 
+                                       style="width: 120px;"
+                                       help="TISI 1099 code (optional)"/>
+                            </div>
+                        </group>
+                        <group string="District (อำเภอ/เขต)">
+                            <label for="etax_district" string="District Name"/>
+                            <div class="o_row">
+                                <field name="etax_district" 
+                                       placeholder="Khlong Toei" 
+                                       class="oe_inline"
+                                       help="Amphoe (rural) or Khet (urban)"/>
+                                <field name="etax_district_code" 
+                                       placeholder="1002" 
+                                       class="oe_inline" 
+                                       style="width: 100px;"
+                                       help="TISI 1099 code (optional)"/>
+                            </div>
+                        </group>
+                    </group>
+                    
+                    <group name="province_postal">
+                        <group string="Province (จังหวัด)">
+                            <label for="etax_province" string="Province Name"/>
+                            <div class="o_row">
+                                <field name="etax_province" 
+                                       placeholder="Bangkok" 
+                                       class="oe_inline"
+                                       help="Province name in Thai or English"/>
+                                <field name="etax_province_code" 
+                                       placeholder="10" 
+                                       class="oe_inline" 
+                                       style="width: 80px;"
+                                       help="2-digit province code (optional)"/>
+                            </div>
+                        </group>
+                        <group string="Postal Code &amp; Country">
+                            <field name="etax_postal_code" 
+                                   placeholder="10110" 
+                                   required="1"
+                                   class="font-weight-bold"
+                                   help="5-digit postal code (REQUIRED for e-Tax)"/>
+                            <field name="etax_country_code" 
+                                   placeholder="TH"
+                                   help="ISO 3166-1 alpha-2 country code"/>
+                        </group>
+                    </group>
+                    
+                    <separator string="Composite Address Lines" help="Address Line 1 is auto-generated from components above"/>
+                    
+                    <!-- Composite Address Section -->
+                    <group name="composite_address">
+                        <field name="etax_address_line_one" 
+                               widget="text" 
+                               readonly="1" 
+                               placeholder="Auto-generated from building number, village, moo, soi, and street"
+                               help="Automatically generated from address components above"/>
+                        <field name="etax_address_line_two" 
+                               widget="text" 
+                               placeholder="Additional address information or delivery instructions"
+                               help="Optional additional address details"/>
+                    </group>
+                    
+                    <div class="alert alert-info" role="alert" style="margin: 16px;">
+                        <strong>Note:</strong> Fill in as many Thai address fields as possible for accurate e-Tax invoice generation.
+                        The postal code (รหัสไปรษณีย์) is mandatory for e-Tax submission.
+                    </div>
                 </page>
             </xpath>
         </field>

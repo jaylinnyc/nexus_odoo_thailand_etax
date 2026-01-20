@@ -347,20 +347,38 @@ class EtaxExcelExportWizard(models.TransientModel):
             seller_tax_id = self._clean_tax_id(company.vat or '')
             seller_branch = self._clean_branch_id(company.etax_branch_id or '00000')
             
-            # Build seller address parts
-            seller_address = company.street or ''
-            seller_address2 = ''
-            if company.etax_building_name:
-                seller_address2 = company.etax_building_name
-                if company.etax_floor_number:
-                    seller_address2 += f", Floor {company.etax_floor_number}"
-            if company.street2 and not seller_address2:
-                seller_address2 = company.street2
+            # Build seller address - use composite line or build from components
+            seller_address = company.etax_address_line_one or company.street or ''
+            seller_address2 = company.etax_address_line_two or ''
+            
+            # If no composite address, build from components for backward compatibility
+            if not seller_address and company.etax_building_number:
+                parts = [company.etax_building_number]
+                if company.etax_village_name:
+                    parts.append(company.etax_village_name)
+                if company.etax_moo:
+                    parts.append(f"Moo {company.etax_moo}")
+                if company.etax_soi:
+                    parts.append(f"Soi {company.etax_soi}")
+                if company.etax_street_name:
+                    parts.append(company.etax_street_name)
+                seller_address = ' '.join(parts)
+            
+            # Build address line 2 from building details if not set
+            if not seller_address2:
+                if company.etax_building_name:
+                    seller_address2 = company.etax_building_name
+                    if company.etax_floor_number:
+                        seller_address2 += f", Floor {company.etax_floor_number}"
+                    if company.etax_room_number:
+                        seller_address2 += f", Room {company.etax_room_number}"
+                elif company.street2:
+                    seller_address2 = company.street2
             
             seller_subdistrict = company.etax_sub_district or ''
             seller_district = company.etax_district or company.city or ''
             seller_province = company.etax_province or (company.state_id.name if company.state_id else '')
-            seller_postcode = company.zip or ''
+            seller_postcode = company.etax_postal_code or company.zip or ''
             seller_phone = company.phone or ''
             seller_email = company.email or ''
             
@@ -369,20 +387,38 @@ class EtaxExcelExportWizard(models.TransientModel):
             buyer_tax_id = self._clean_tax_id(partner.etax_effective_tax_id or partner.vat or '')
             buyer_branch = self._clean_branch_id(partner.etax_branch_id or '00000')
             
-            # Build buyer address parts
-            buyer_address = partner.street or ''
-            buyer_address2 = ''
-            if partner.etax_building_name:
-                buyer_address2 = partner.etax_building_name
-                if partner.etax_floor_number:
-                    buyer_address2 += f", Floor {partner.etax_floor_number}"
-            if partner.street2 and not buyer_address2:
-                buyer_address2 = partner.street2
+            # Build buyer address - use composite line or build from components
+            buyer_address = partner.etax_address_line_one or partner.street or ''
+            buyer_address2 = partner.etax_address_line_two or ''
+            
+            # If no composite address, build from components for backward compatibility
+            if not buyer_address and partner.etax_building_number:
+                parts = [partner.etax_building_number]
+                if partner.etax_village_name:
+                    parts.append(partner.etax_village_name)
+                if partner.etax_moo:
+                    parts.append(f"Moo {partner.etax_moo}")
+                if partner.etax_soi:
+                    parts.append(f"Soi {partner.etax_soi}")
+                if partner.etax_street_name:
+                    parts.append(partner.etax_street_name)
+                buyer_address = ' '.join(parts)
+            
+            # Build address line 2 from building details if not set
+            if not buyer_address2:
+                if partner.etax_building_name:
+                    buyer_address2 = partner.etax_building_name
+                    if partner.etax_floor_number:
+                        buyer_address2 += f", Floor {partner.etax_floor_number}"
+                    if partner.etax_room_number:
+                        buyer_address2 += f", Room {partner.etax_room_number}"
+                elif partner.street2:
+                    buyer_address2 = partner.street2
             
             buyer_subdistrict = partner.etax_sub_district or ''
             buyer_district = partner.etax_district or partner.city or ''
             buyer_province = partner.etax_province or (partner.state_id.name if partner.state_id else '')
-            buyer_postcode = partner.zip or ''
+            buyer_postcode = partner.etax_postal_code or partner.zip or ''
             buyer_phone = partner.phone or ''
             buyer_email = partner.email or ''
             
@@ -573,12 +609,22 @@ class EtaxExcelExportWizard(models.TransientModel):
             _logger.warning(f'Invoice {invoice.name}: Invalid seller tax ID')
             return False
         
+        # Seller postal code validation (critical for e-Tax)
+        if not company.etax_postal_code and not company.zip:
+            _logger.warning(f'Invoice {invoice.name}: Missing seller postal code (required for e-Tax)')
+            # Don't fail validation, but log warning
+        
         # Buyer validation
         partner = invoice.partner_id
         buyer_tax_id = self._clean_tax_id(partner.etax_effective_tax_id or partner.vat or '')
         if not buyer_tax_id or len(buyer_tax_id) != 13:
             _logger.warning(f'Invoice {invoice.name}: Invalid buyer tax ID for {partner.name}')
             return False
+        
+        # Buyer postal code validation (critical for e-Tax)
+        if not partner.etax_postal_code and not partner.zip:
+            _logger.warning(f'Invoice {invoice.name}: Missing buyer postal code for {partner.name} (required for e-Tax)')
+            # Don't fail validation, but log warning
         
         # Line items validation
         product_lines = invoice.invoice_line_ids.filtered(lambda l: l.display_type == 'product')
@@ -587,9 +633,9 @@ class EtaxExcelExportWizard(models.TransientModel):
         
         # Reference document validation for Credit/Debit Notes
         if invoice.move_type in ('out_refund',):
-            if not invoice.etax_reference_number or not invoice.etax_reference_date:
+            if not invoice.reversed_entry_id:
                 _logger.warning(
-                    f'Invoice {invoice.name}: Credit/Debit note missing reference document'
+                    f'Invoice {invoice.name}: Credit note missing reference to original invoice'
                 )
                 # Still export but log warning
         
@@ -600,7 +646,26 @@ class EtaxExcelExportWizard(models.TransientModel):
         """Format partner address as a single string, including Thai address fields"""
         parts = []
         
-        # Thai-specific address fields first
+        # Use composite address line if available (preferred)
+        if partner.etax_address_line_one:
+            parts.append(partner.etax_address_line_one)
+        else:
+            # Build from individual components
+            if partner.etax_building_number:
+                parts.append(partner.etax_building_number)
+            if partner.etax_village_name:
+                parts.append(partner.etax_village_name)
+            if partner.etax_moo:
+                parts.append(f"Moo {partner.etax_moo}")
+            if partner.etax_soi:
+                parts.append(f"Soi {partner.etax_soi}")
+            if partner.etax_street_name:
+                parts.append(partner.etax_street_name)
+            # Fallback to standard street if no Thai fields
+            elif partner.street:
+                parts.append(partner.street)
+        
+        # Building details
         if partner.etax_building_name:
             parts.append(partner.etax_building_name)
         if partner.etax_floor_number:
@@ -608,34 +673,35 @@ class EtaxExcelExportWizard(models.TransientModel):
         if partner.etax_room_number:
             parts.append(f"Room {partner.etax_room_number}")
         
-        # Standard address fields
-        if partner.street:
-            parts.append(partner.street)
-        if partner.street2:
+        # Additional address line
+        if partner.etax_address_line_two:
+            parts.append(partner.etax_address_line_two)
+        elif partner.street2:
             parts.append(partner.street2)
         
-        # Thai-specific location fields
-        if partner.etax_moo:
-            parts.append(f"Moo {partner.etax_moo}")
-        if partner.etax_soi:
-            parts.append(f"Soi {partner.etax_soi}")
+        # Administrative divisions
         if partner.etax_sub_district:
             parts.append(partner.etax_sub_district)
         if partner.etax_district:
             parts.append(partner.etax_district)
+        elif partner.city:
+            parts.append(partner.city)
+            
         if partner.etax_province:
             parts.append(partner.etax_province)
+        elif partner.state_id:
+            parts.append(partner.state_id.name)
         
-        # Fallback to standard city/state if Thai fields not set
-        if not partner.etax_sub_district and not partner.etax_district:
-            if partner.city:
-                parts.append(partner.city)
-            if partner.state_id:
-                parts.append(partner.state_id.name)
-        
-        if partner.zip:
-            parts.append(partner.zip)
-        if partner.country_id:
+        # Postal code (prefer etax field)
+        postal = partner.etax_postal_code or partner.zip
+        if postal:
+            parts.append(postal)
+            
+        # Country
+        country_code = partner.etax_country_code or (partner.country_id.code if partner.country_id else None)
+        if country_code:
+            parts.append(country_code)
+        elif partner.country_id:
             parts.append(partner.country_id.name)
         
         return ', '.join(parts)
