@@ -260,24 +260,54 @@ class EtaxExcelExportWizard(models.TransientModel):
             ('seller_name', 30),
             ('seller_tax_id', 15),
             ('seller_branch', 12),
+            # Seller Thai Address Components
+            ('seller_building_number', 16),
+            ('seller_building_name', 20),
+            ('seller_floor', 10),
+            ('seller_room', 10),
+            ('seller_village_name', 20),
+            ('seller_moo', 8),
+            ('seller_soi', 18),
+            ('seller_street', 20),
+            # Seller Composite Address
             ('seller_address', 30),
             ('seller_address2', 25),
+            # Seller Administrative Divisions
             ('seller_subdistrict', 18),
+            ('seller_subdistrict_code', 12),
             ('seller_district', 18),
+            ('seller_district_code', 10),
             ('seller_province', 15),
+            ('seller_province_code', 10),
             ('seller_postcode', 12),
+            ('seller_country_code', 10),
             ('seller_phone', 15),
             ('seller_email', 25),
             # Buyer Information
             ('buyer_name', 30),
             ('buyer_tax_id', 15),
             ('buyer_branch', 12),
+            # Buyer Thai Address Components
+            ('buyer_building_number', 16),
+            ('buyer_building_name', 20),
+            ('buyer_floor', 10),
+            ('buyer_room', 10),
+            ('buyer_village_name', 20),
+            ('buyer_moo', 8),
+            ('buyer_soi', 18),
+            ('buyer_street', 20),
+            # Buyer Composite Address
             ('buyer_address', 30),
             ('buyer_address2', 25),
+            # Buyer Administrative Divisions
             ('buyer_subdistrict', 18),
+            ('buyer_subdistrict_code', 12),
             ('buyer_district', 18),
+            ('buyer_district_code', 10),
             ('buyer_province', 15),
+            ('buyer_province_code', 10),
             ('buyer_postcode', 12),
+            ('buyer_country_code', 10),
             ('buyer_phone', 15),
             ('buyer_email', 25),
             # Line Items
@@ -347,6 +377,16 @@ class EtaxExcelExportWizard(models.TransientModel):
             seller_tax_id = self._clean_tax_id(company.vat or '')
             seller_branch = self._clean_branch_id(company.etax_branch_id or '00000')
             
+            # Seller Thai Address Component Fields
+            seller_building_number = company.etax_building_number or ''
+            seller_building_name = company.etax_building_name or ''
+            seller_floor = company.etax_floor_number or ''
+            seller_room = company.etax_room_number or ''
+            seller_village_name = company.etax_village_name or ''
+            seller_moo = company.etax_moo or ''
+            seller_soi = company.etax_soi or ''
+            seller_street = company.etax_street_name or ''
+            
             # Build seller address - use composite line or build from components
             seller_address = company.etax_address_line_one or company.street or ''
             seller_address2 = company.etax_address_line_two or ''
@@ -375,10 +415,15 @@ class EtaxExcelExportWizard(models.TransientModel):
                 elif company.street2:
                     seller_address2 = company.street2
             
+            # Seller Administrative Division Fields
             seller_subdistrict = company.etax_sub_district or ''
+            seller_subdistrict_code = company.etax_sub_district_code or ''
             seller_district = company.etax_district or company.city or ''
+            seller_district_code = company.etax_district_code or ''
             seller_province = company.etax_province or (company.state_id.name if company.state_id else '')
+            seller_province_code = company.etax_province_code or ''
             seller_postcode = company.etax_postal_code or company.zip or ''
+            seller_country_code = company.etax_country_code or 'TH'
             seller_phone = company.phone or ''
             seller_email = company.email or ''
             
@@ -386,6 +431,16 @@ class EtaxExcelExportWizard(models.TransientModel):
             partner = invoice.partner_id
             buyer_tax_id = self._clean_tax_id(partner.etax_effective_tax_id or partner.vat or '')
             buyer_branch = self._clean_branch_id(partner.etax_branch_id or '00000')
+            
+            # Buyer Thai Address Component Fields
+            buyer_building_number = partner.etax_building_number or ''
+            buyer_building_name = partner.etax_building_name or ''
+            buyer_floor = partner.etax_floor_number or ''
+            buyer_room = partner.etax_room_number or ''
+            buyer_village_name = partner.etax_village_name or ''
+            buyer_moo = partner.etax_moo or ''
+            buyer_soi = partner.etax_soi or ''
+            buyer_street = partner.etax_street_name or ''
             
             # Build buyer address - use composite line or build from components
             buyer_address = partner.etax_address_line_one or partner.street or ''
@@ -415,10 +470,15 @@ class EtaxExcelExportWizard(models.TransientModel):
                 elif partner.street2:
                     buyer_address2 = partner.street2
             
+            # Buyer Administrative Division Fields
             buyer_subdistrict = partner.etax_sub_district or ''
+            buyer_subdistrict_code = partner.etax_sub_district_code or ''
             buyer_district = partner.etax_district or partner.city or ''
+            buyer_district_code = partner.etax_district_code or ''
             buyer_province = partner.etax_province or (partner.state_id.name if partner.state_id else '')
+            buyer_province_code = partner.etax_province_code or ''
             buyer_postcode = partner.etax_postal_code or partner.zip or ''
+            buyer_country_code = partner.etax_country_code or 'TH'
             buyer_phone = partner.phone or ''
             buyer_email = partner.email or ''
             
@@ -500,32 +560,66 @@ class EtaxExcelExportWizard(models.TransientModel):
                 
                 # Write all columns
                 col = 0
+                # Document header
                 worksheet.write(row, col, doc_type, text_format); col += 1
                 worksheet.write(row, col, invoice.name or '', text_format); col += 1
                 worksheet.write(row, col, invoice.invoice_date, date_format); col += 1
                 worksheet.write(row, col, purpose, text_format); col += 1
+                # Seller info
                 worksheet.write(row, col, company.name or '', text_format); col += 1
                 worksheet.write(row, col, seller_tax_id, text_format); col += 1
                 worksheet.write(row, col, seller_branch, text_format); col += 1
+                # Seller Thai address components
+                worksheet.write(row, col, seller_building_number, text_format); col += 1
+                worksheet.write(row, col, seller_building_name, text_format); col += 1
+                worksheet.write(row, col, seller_floor, text_format); col += 1
+                worksheet.write(row, col, seller_room, text_format); col += 1
+                worksheet.write(row, col, seller_village_name, text_format); col += 1
+                worksheet.write(row, col, seller_moo, text_format); col += 1
+                worksheet.write(row, col, seller_soi, text_format); col += 1
+                worksheet.write(row, col, seller_street, text_format); col += 1
+                # Seller composite address
                 worksheet.write(row, col, seller_address, text_format); col += 1
                 worksheet.write(row, col, seller_address2, text_format); col += 1
+                # Seller administrative divisions
                 worksheet.write(row, col, seller_subdistrict, text_format); col += 1
+                worksheet.write(row, col, seller_subdistrict_code, text_format); col += 1
                 worksheet.write(row, col, seller_district, text_format); col += 1
+                worksheet.write(row, col, seller_district_code, text_format); col += 1
                 worksheet.write(row, col, seller_province, text_format); col += 1
+                worksheet.write(row, col, seller_province_code, text_format); col += 1
                 worksheet.write(row, col, seller_postcode, text_format); col += 1
+                worksheet.write(row, col, seller_country_code, text_format); col += 1
                 worksheet.write(row, col, seller_phone, text_format); col += 1
                 worksheet.write(row, col, seller_email, text_format); col += 1
+                # Buyer info
                 worksheet.write(row, col, partner.name or '', text_format); col += 1
                 worksheet.write(row, col, buyer_tax_id, text_format); col += 1
                 worksheet.write(row, col, buyer_branch, text_format); col += 1
+                # Buyer Thai address components
+                worksheet.write(row, col, buyer_building_number, text_format); col += 1
+                worksheet.write(row, col, buyer_building_name, text_format); col += 1
+                worksheet.write(row, col, buyer_floor, text_format); col += 1
+                worksheet.write(row, col, buyer_room, text_format); col += 1
+                worksheet.write(row, col, buyer_village_name, text_format); col += 1
+                worksheet.write(row, col, buyer_moo, text_format); col += 1
+                worksheet.write(row, col, buyer_soi, text_format); col += 1
+                worksheet.write(row, col, buyer_street, text_format); col += 1
+                # Buyer composite address
                 worksheet.write(row, col, buyer_address, text_format); col += 1
                 worksheet.write(row, col, buyer_address2, text_format); col += 1
+                # Buyer administrative divisions
                 worksheet.write(row, col, buyer_subdistrict, text_format); col += 1
+                worksheet.write(row, col, buyer_subdistrict_code, text_format); col += 1
                 worksheet.write(row, col, buyer_district, text_format); col += 1
+                worksheet.write(row, col, buyer_district_code, text_format); col += 1
                 worksheet.write(row, col, buyer_province, text_format); col += 1
+                worksheet.write(row, col, buyer_province_code, text_format); col += 1
                 worksheet.write(row, col, buyer_postcode, text_format); col += 1
+                worksheet.write(row, col, buyer_country_code, text_format); col += 1
                 worksheet.write(row, col, buyer_phone, text_format); col += 1
                 worksheet.write(row, col, buyer_email, text_format); col += 1
+                # Line item details
                 worksheet.write(row, col, line_num, int_format); col += 1
                 worksheet.write(row, col, item_name, text_format); col += 1
                 worksheet.write(row, col, description, text_format); col += 1
