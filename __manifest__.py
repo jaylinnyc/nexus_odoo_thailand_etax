@@ -28,7 +28,7 @@
     'author': "Nexus",
     'website': "https://nexus.co.th",
     'category': 'Accounting/Localizations',
-    'version': '19.0.3.0.0',
+    'version': '19.0.3.0.1',
     'depends': [
         'base',
         'account',
