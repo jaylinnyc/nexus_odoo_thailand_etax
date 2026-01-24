@@ -106,7 +106,6 @@
                         <group string="Postal Code &amp; Country">
                             <field name="etax_postal_code" 
                                    placeholder="10110" 
-                                   required="1"
                                    class="font-weight-bold"
                                    help="5-digit postal code (REQUIRED for e-Tax)"/>
                             <field name="etax_country_code" 
